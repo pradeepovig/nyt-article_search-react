@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  font-size: 10px;
+}
+
+/*
+  Utility Classes
+*/
+
+.flex {
+  display: flex;
+}
+
+.justifyContentCenter {
+  justify-content: center;
+}
+
+.alignItemsCenter {
+  align-items: center;
+}
