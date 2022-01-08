@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
+import {AppDataProvider} from "./contexts/App.context";
+import RenderRoutes from "./core/routes";
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <AppDataProvider>
+      <RenderRoutes />
+    </AppDataProvider>
   );
 }
 

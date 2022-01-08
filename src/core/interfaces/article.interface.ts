@@ -4,14 +4,14 @@ export interface ArticleProps {
 	lead_paragraph: string,
 	headline: {
 		main: string,
-		kicker: null,
-		content_kicker: null,
+		kicker: any,
+		content_kicker: any,
 		print_headline: string,
-		name: null,
-		seo: null,
-		sub: null
+		name: any,
+		seo: any,
+		sub: any
 	}
-	pub_date: string,
+	pub_date: string
 }
 
 export interface FetchArticlesResponseProps {
