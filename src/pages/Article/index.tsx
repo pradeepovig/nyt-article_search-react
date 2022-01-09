@@ -1,17 +1,17 @@
 import React from "react";
-import SearchBar from "../../components/SearchBar";
-import {Link} from "react-router-dom";
-import {ArticleProps} from "../../core/interfaces/article.interface";
+import {Link, useParams} from "react-router-dom";
+import Article from "../../components/Article";
 
-const ArticlePage = (props: ArticleProps): JSX.Element => {
+const ArticlePage = (): JSX.Element => {
+	let { title, cat, subcat, year, month, day } = useParams();
+	const articleURL = title ?
+		`${year}/${month}/${day}/${cat}/${subcat}/${title}` :
+		`${year}/${month}/${day}/${cat}/${subcat}`;
+
 	return (
 		<>
 			<Link to={"/"}>Go to results page</Link>
-			<article>
-				<h1 className="articleHeadline">{props.headline.print_headline}</h1>
-				<i className="articleDate">{props.pub_date}</i>
-				<p className=""> </p>
-			</article>
+			{/*<Article title={title} cat={cat} subcat={subcat} year={year} month={month} day={day}/>*/}
 		</>
 	);
 }

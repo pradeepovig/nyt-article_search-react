@@ -12,12 +12,10 @@ const Loader = () => {
 				backgroundColor="#f3f3f3"
 				foregroundColor="#ecebeb"
 			>
-				<rect x="0" y="0" rx="3" ry="3" width="140" height="20" />
-				<rect x="0" y="40" rx="3" ry="3" width="740" height="20" />
-				<rect x="0" y="100" rx="3" ry="3" width="140" height="20" />
-				<rect x="0" y="140" rx="3" ry="3" width="700" height="20" />
-				<rect x="0" y="200" rx="3" ry="3" width="140" height="20" />
-				<rect x="0" y="240" rx="3" ry="3" width="680" height="20" />
+				<rect x="0" y="34" rx="3" ry="3" width="52" height="6" />
+				<rect x="0" y="54" rx="3" ry="3" width="360" height="6" />
+				<rect x="0" y="72" rx="3" ry="3" width="360" height="6" />
+				<rect x="297" y="90" rx="3" ry="3" width="64" height="16" />
 			</ContentLoader>
 		</div>
 	);

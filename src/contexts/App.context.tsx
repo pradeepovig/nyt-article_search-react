@@ -1,16 +1,19 @@
 import { useState, createContext } from 'react'
 import {AppProps} from "../core/interfaces/app.interface";
-import {FetchArticlesResponseProps} from "../core/interfaces/article.interface";
+import {ArticleProps, FetchArticlesResponseProps} from "../core/interfaces/article.interface";
 import FetchArticlesMock from "../tests/mocks/fetchArticles.mock";
+import ArticlesMock from "../tests/mocks/articles.mock";
 
 // Ignore Unused parameter warning
 const AppContext = createContext({
 	fetchingArticles: false,
 	fetchArticlesResponse: FetchArticlesMock,
 	searchQuery: '',
+	article: ArticlesMock[0],
 	setFetchingArticles: (val: boolean) => {},
 	setFetchArticlesResponse: (val: FetchArticlesResponseProps) => {},
-	setSearchQuery: (val: string) => {}
+	setSearchQuery: (val: string) => {},
+	setArticle: (val: ArticleProps) => {}
 });
 
 const AppDataProvider = (props: AppProps) => {
@@ -26,14 +29,20 @@ const AppDataProvider = (props: AppProps) => {
 		setState({...state, searchQuery});
 	};
 
+	const setArticle = (article: ArticleProps) => {
+		setState({...state, article});
+	};
+
 	// Value that will be given to the context, i.e state
 	const [state, setState] = useState({
 		fetchingArticles: false,
 		fetchArticlesResponse: FetchArticlesMock,
 		searchQuery: '',
+		article: ArticlesMock[0],
 		setFetchingArticles,
 		setFetchArticlesResponse,
 		setSearchQuery,
+		setArticle
 	});
 
 	return (

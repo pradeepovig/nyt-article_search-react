@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import SearchBar from "../../components/SearchBar";
 import SearchAPIService from "../../services/API/SearchAPI.service";
 import {AppContext} from "../../contexts/App.context";
@@ -43,6 +43,12 @@ const HomePage = (): JSX.Element => {
 			setTotalPages(pages);
 		});
 	};
+
+	useEffect(() => {
+		if (appContext.searchQuery?.length) {
+			searchArticles(appContext.searchQuery, page);
+		}
+	}, []);
 
 	const handleSearch = (query: string) => {
 		searchArticles(query, 0);
