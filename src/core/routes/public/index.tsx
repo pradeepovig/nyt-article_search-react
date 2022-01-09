@@ -1,8 +1,11 @@
 import { lazy } from "react";
 
 // Lazy loading imports
+// @ts-ignore
 const Home = lazy(() => import("./pages/Home"));
+// @ts-ignore
 const Article = lazy(() => import("./pages/Article"));
+// @ts-ignore
 const Error404 = lazy(() => import("./pages/Error404"));
 
 const PUBLIC_ROUTES = [
