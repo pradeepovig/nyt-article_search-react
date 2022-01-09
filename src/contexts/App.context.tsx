@@ -5,25 +5,33 @@ import FetchArticlesMock from "../tests/mocks/fetchArticles.mock";
 
 // Ignore Unused parameter warning
 const AppContext = createContext({
+	fetchingArticles: false,
 	fetchArticlesResponse: FetchArticlesMock,
 	searchQuery: '',
-	setFetchArticlesResponse: (fetchArticlesResponse: FetchArticlesResponseProps) => {},
-	setSearchQuery: (searchQuery: string) => {}
+	setFetchingArticles: (val: boolean) => {},
+	setFetchArticlesResponse: (val: FetchArticlesResponseProps) => {},
+	setSearchQuery: (val: string) => {}
 });
 
 const AppDataProvider = (props: AppProps) => {
+	const setFetchingArticles = (fetchingArticles: boolean) => {
+		setState({...state, fetchingArticles});
+	}
+
 	const setFetchArticlesResponse = (fetchArticlesResponse: FetchArticlesResponseProps) => {
-		setState({...state, fetchArticlesResponse})
+		setState({...state, fetchArticlesResponse});
 	};
 
 	const setSearchQuery = (searchQuery: string) => {
-		setState({...state, searchQuery})
+		setState({...state, searchQuery});
 	};
 
 	// Value that will be given to the context, i.e state
 	const [state, setState] = useState({
+		fetchingArticles: false,
 		fetchArticlesResponse: FetchArticlesMock,
 		searchQuery: '',
+		setFetchingArticles,
 		setFetchArticlesResponse,
 		setSearchQuery,
 	});

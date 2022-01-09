@@ -4,7 +4,7 @@ import { lazy } from "react";
 // @ts-ignore
 const Home = lazy(() => import("./pages/Home"));
 // @ts-ignore
-const Article = lazy(() => import("./pages/Article"));
+const Article = lazy(() => import("./pages/ArticleItem"));
 // @ts-ignore
 const Error404 = lazy(() => import("./pages/Error404"));
 
