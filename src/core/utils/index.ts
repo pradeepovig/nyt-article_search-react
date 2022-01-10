@@ -6,14 +6,14 @@ export function replaceUrl(oldurl: string): string {
 	return url;
 }
 
-export function isUrlValid(params: string) {
-	const regex = /(\d{4})\/(\d{2})\/(\d{2})\/([\w-]+)\/([\w-]+)\/([\w-]+)$/g;
-	const regexSec = /(\d{4})\/(\d{2})\/(\d{2})\/([\w-]+)\/([\w-]+)/g;
-
-	return regex.test(params) || regexSec.test(params);
+export function isValidURL(params: string) {
+	// Valid URL Format: yyyy/mm/dd/word/word/word
+	const format1 = /(\d{4})\/(\d{2})\/(\d{2})\/([\w-]+)\/([\w-]+)\/([\w-]+)$/g;
+	const format2 = /(\d{4})\/(\d{2})\/(\d{2})\/([\w-]+)\/([\w-]+)/g;
+	return format1.test(params) || format2.test(params);
 }
 
-export const setPageTitle = (title: string) => {
+export const setDocumentTitle = (title: string) => {
 	document.title = `${title} - New York Times`;
 };
 

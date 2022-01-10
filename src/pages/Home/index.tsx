@@ -3,19 +3,19 @@ import SearchBar from "../../components/SearchBar";
 import SearchAPIService from "../../services/API/SearchAPI.service";
 import {AppContext} from "../../contexts/App.context";
 import {
-	PAGINATION_BWD,
+	PAGINATION_BWD, UI_STATE_DEFAULT,
 	UI_STATE_EMPTY,
 	UI_STATE_ERROR,
 	UI_STATE_LOADING,
 	UI_STATE_SUCCESS
 } from "../../core/static/constants";
-import Loader from "../../components/shared/loader";
 import Pagination from "../../components/Pagination";
 import ArticlesList from "../../components/ArticlesList";
-import Empty from "../../components/shared/empty";
+import Empty from "../../components/shared/Empty";
+import ContentLoader from "react-content-loader";
 
 const HomePage = (): JSX.Element => {
-	const [uiState, setUIState] = useState('DEFAULT');
+	const [uiState, setUIState] = useState(UI_STATE_DEFAULT);
 	const [page, setPage] = useState(0);
 	const [totalPages, setTotalPages] = useState(0);
 	const appContext = useContext(AppContext);
@@ -77,7 +77,24 @@ const HomePage = (): JSX.Element => {
 	const renderUI = () => {
 		switch(uiState) {
 			case UI_STATE_LOADING:
-				return <Loader />;
+				return (
+					<div aria-label="Content Loader">
+						<ContentLoader
+							speed={2}
+							width={740}
+							gradientRatio={0.2}
+							height={784}
+							viewBox="0 0 740 784"
+							backgroundColor="#f3f3f3"
+							foregroundColor="#ecebeb"
+						>
+							<rect x="0" y="34" rx="3" ry="3" width="52" height="6" />
+							<rect x="0" y="54" rx="3" ry="3" width="360" height="6" />
+							<rect x="0" y="72" rx="3" ry="3" width="360" height="6" />
+							<rect x="297" y="90" rx="3" ry="3" width="64" height="16" />
+						</ContentLoader>
+					</div>
+				);
 			case UI_STATE_EMPTY:
 				return <Empty />;
 			case UI_STATE_SUCCESS:

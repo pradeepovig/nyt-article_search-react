@@ -1,20 +1,15 @@
-import {ArticleProps, ParamTypes} from "../../core/interfaces/article.interface";
-import {useEffect, useState} from "react";
-import ArticlesMock from "../../tests/mocks/articles.mock";
+import {ArticleProps} from "../../core/interfaces/article.interface";
 
-const Article = ({ title, cat, subcat, year, month, day }: ParamTypes): JSX.Element => {
-	let [article, setArticle] = useState<ArticleProps>(ArticlesMock[0]);
-	let [fetchingArticle, setFetchingArticle] = useState<boolean>(false);
+interface ArticleComponentProps {
+	data: ArticleProps
+}
 
-	useEffect(() => {
-		if (!article.web_url?.length) {
-		}
-	}, [article]);
-
+const Article = (props: ArticleComponentProps): JSX.Element => {
 	return (
 		<article>
-			<h1 className="articleHeadline">{article.headline.main}</h1>
-			<i className="articleDate">{article.pub_date}</i>
+			<h1 className="articleHeadline">{props.data.headline.main}</h1>
+			<i className="articleDate">{props.data.pub_date}</i>
+			<p className="articleParagraph">{props.data.lead_paragraph}</p>
 		</article>
 	);
 }

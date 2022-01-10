@@ -10,10 +10,12 @@ const AppContext = createContext({
 	fetchArticlesResponse: FetchArticlesMock,
 	searchQuery: '',
 	article: ArticlesMock[0],
+	articleURL: '',
 	setFetchingArticles: (val: boolean) => {},
 	setFetchArticlesResponse: (val: FetchArticlesResponseProps) => {},
 	setSearchQuery: (val: string) => {},
-	setArticle: (val: ArticleProps) => {}
+	setArticle: (val: ArticleProps) => {},
+	setArticleURL: (val: string) => {}
 });
 
 const AppDataProvider = (props: AppProps) => {
@@ -33,16 +35,22 @@ const AppDataProvider = (props: AppProps) => {
 		setState({...state, article});
 	};
 
+	const setArticleURL = (articleURL: string) => {
+		setState({...state, articleURL});
+	};
+
 	// Value that will be given to the context, i.e state
 	const [state, setState] = useState({
 		fetchingArticles: false,
 		fetchArticlesResponse: FetchArticlesMock,
 		searchQuery: '',
 		article: ArticlesMock[0],
+		articleURL: '',
 		setFetchingArticles,
 		setFetchArticlesResponse,
 		setSearchQuery,
-		setArticle
+		setArticle,
+		setArticleURL
 	});
 
 	return (

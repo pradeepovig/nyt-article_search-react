@@ -29,10 +29,10 @@ export interface FetchArticlesResponseProps {
 
 // TODO: Remove if unused
 export interface ParamTypes {
-	title: string;
-	cat: string;
-	subcat: string;
-	year: string;
-	month: string;
-	day: string;
+	title: string | undefined;
+	cat: string | undefined;
+	subcat: string | undefined;
+	year: string | undefined;
+	month: string | undefined;
+	day: string | undefined;
 }
