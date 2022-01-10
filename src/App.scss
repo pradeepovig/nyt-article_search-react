@@ -2,6 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,300;1,400;1,700&display=swap');
 @import "assets/partials/theme";
 
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+}
+
 /*
   Core Config
 */
@@ -34,6 +51,34 @@ input {
 		box-shadow: 0 0 0 2px $colorActiveOutline;
 		border-right-width: 1px!important;
 		outline: 0;
+	}
+}
+
+button {
+	color: $colorPrimary;
+	background: $colorSecondary;
+	text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+	line-height: 1.5715;
+	position: relative;
+	display: inline-block;
+	font-weight: 400;
+	white-space: nowrap;
+	text-align: center;
+	border: 1px solid transparent;
+	box-shadow: 0 2px #00000004;
+	cursor: pointer;
+	user-select: none;
+	touch-action: manipulation;
+	height: 32px;
+	padding: 4px 15px;
+	font-size: 14px;
+	border-radius: 4px;
+	transition: all .3s cubic-bezier(.645,.045,.355,1);
+
+	&:disabled {
+		filter: opacity(0.5);
+		cursor: none;
+		pointer-events: none;
 	}
 }
 
@@ -90,51 +135,53 @@ header {
 	.searchBar {
 		margin-bottom: 2rem;
 	}
-}
 
-.searchResultsContainer {
-	label {
-		margin-bottom: 2rem;
-	}
-}
-
-.articlesList {
-	margin: 0;
-	padding: 0;
-}
-
-.articleListItem {
-	font-family: 'Merriweather', serif;
-	margin-bottom: 2rem;
-	border-radius: 4px;
-	border-bottom: 2px solid transparent;
-	border-left: 2px solid transparent;
-	padding: 0.5rem 0;
-	transition: all 0.3s;
-
-	&:hover {
-		padding-left: 0.5rem;
-		border-color: #e2e2e2;
-	}
-
-	a {
-		display: flex;
-		flex-direction: column;
-		color: inherit;
-		text-decoration: none;
-
-		i {
-			color: $colorTextLight;
-			margin-bottom: 1em;
+	.searchResultsContainer {
+		label {
+			margin-bottom: 2rem;
 		}
 	}
 
-	.articleHeadline {
-		margin-top: 0;
+	.articlesList {
+		margin: 0;
+		padding: 0;
+		max-height: 50vh;
+		overflow-y: auto;
 	}
 
-	.articleSubHeadline {
-		margin-bottom: 0;
+	.articleListItem {
+		font-family: 'Merriweather', serif;
+		margin-bottom: 2rem;
+		border-radius: 4px;
+		border-bottom: 2px solid transparent;
+		border-left: 2px solid transparent;
+		padding: 0.5rem 0;
+		transition: all 0.3s;
+
+		&:hover {
+			padding-left: 0.5rem;
+			border-color: #e2e2e2;
+		}
+
+		a {
+			display: flex;
+			flex-direction: column;
+			color: inherit;
+			text-decoration: none;
+
+			i {
+				color: $colorTextLight;
+				margin-bottom: 1em;
+			}
+		}
+
+		.articleHeadline {
+			margin: 0;
+		}
+
+		.articleSubHeadline {
+			margin-bottom: 0;
+		}
 	}
 }
 
@@ -158,4 +205,11 @@ header {
 			fill: $colorBorder;
 		}
 	}
+}
+
+.pagination {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 1rem;
+	padding: 0.5rem 0;
 }

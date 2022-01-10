@@ -12,10 +12,8 @@ const ArticleItem = ({ data }: ArticleItemProps): JSX.Element => {
 		<article className="articleListItem">
 			<Link to={getArticlePageURL(data.web_url)}>
 				<i className="articleDate">{ data.pub_date }</i>
-				<div>
-					<h1 className="articleHeadline">{ data.headline.main }</h1>
-					<h4 className="articleSubHeadline">{ data.headline.print_headline }</h4>
-				</div>
+				<h1 className="articleHeadline">{ data.headline.main }</h1>
+				{ data.headline.print_headline ? ( <h4 className="articleSubHeadline">{ data.headline.print_headline }</h4> ) : null }
 			</Link>
 		</article>
 	);

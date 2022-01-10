@@ -35,11 +35,12 @@ const HomePage = (): JSX.Element => {
 					setUIState(UI_STATE_EMPTY);
 				}
 
-				pages = data.response.meta.hits ? ( data.response.meta.hits / 10 ) + ( data.response.meta.hits % 10 ) : 0;
+				pages = data.response.meta.hits ? ( Math.floor(data.response.meta.hits / 10) ) + ( data.response.meta.hits % 10 ) : 0;
 			} else {
 				setUIState(UI_STATE_ERROR);
 			}
 
+			console.log(page);
 			setTotalPages(pages);
 		});
 	};
@@ -104,7 +105,7 @@ const HomePage = (): JSX.Element => {
 							<label htmlFor="searchArticles">Results: { totalPages }</label>
 							<ArticlesList id="searchArticles" articles={appContext.fetchArticlesResponse.response.docs} />
 						</section>
-						<Pagination prev={false} next={false} onPaginate={handlePagination}/>
+						<Pagination page={page} totalPages={totalPages} onPaginate={handlePagination}/>
 					</>
 				);
 			default:

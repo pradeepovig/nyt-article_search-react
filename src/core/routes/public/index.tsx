@@ -16,7 +16,7 @@ const PUBLIC_ROUTES = [
 		component: <Home />
 	},
 	{
-		path: '/article',
+		path: '/:year/:month/:day/:cat/:subcat/:title?',
 		key: 'ARTICLE',
 		exact: true,
 		component: <Article />
