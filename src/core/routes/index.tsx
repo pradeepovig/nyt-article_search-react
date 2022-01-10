@@ -9,14 +9,14 @@ const RenderRoutes = (): React.ReactElement => {
 		<Router>
 			<MainLayout>
 				<Suspense fallback="">
-					{/* Note: Switch is now Routes in v6 */}
-					{
-						PUBLIC_ROUTES.map(
-							({ path, key, exact, component }: RouteProps): JSX.Element =>
-								exact ? ( <Route path={path} element={component} key={key} /> ) :
-									( <Route path={path} element={component} key={key} /> )
-						)
-					}
+					<Routes>
+						{/* Note: Switch is now Routes in v6 */}
+						{
+							PUBLIC_ROUTES.map(
+								({ path, key, component }: RouteProps): JSX.Element => <Route path={path} element={component} key={key} />
+							)
+						}
+					</Routes>
 				</Suspense>
 			</MainLayout>
 		</Router>

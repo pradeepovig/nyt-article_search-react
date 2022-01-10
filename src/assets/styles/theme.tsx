@@ -3,15 +3,15 @@ import {AppProps} from "../../core/interfaces/app.interface";
 
 const theme = {
   colors: {
-    powderWhite: "#FFFDF9",
-    persianGreen: "#06B49A",
-    lightBlue: "#AFDBD2",
-    onyx: "#36313D"
+    primary: '#fff',
+    secondary: '#000',
+    grayLight: '#e2e2e2',
+    grayDark: '#333'
   },
   fontSizes: {
-    small: "1em",
-    medium: "2em",
-    large: "3em"
+    normal: "1em",
+    x2: "2em",
+    x3: "3em"
   }
 };
 

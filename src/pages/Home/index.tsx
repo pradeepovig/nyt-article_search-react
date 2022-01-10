@@ -100,7 +100,7 @@ const HomePage = (): JSX.Element => {
 			case UI_STATE_SUCCESS:
 				return (
 					<>
-						<section aria-label="Search Results">
+						<section aria-label="Search Results" className="searchResultsContainer">
 							<label htmlFor="searchArticles">Results: { totalPages }</label>
 							<ArticlesList id="searchArticles" articles={appContext.fetchArticlesResponse.response.docs} />
 						</section>
@@ -113,10 +113,10 @@ const HomePage = (): JSX.Element => {
 	};
 
 	return (
-		<>
+		<div className="homePage">
 			<SearchBar onSearch={handleSearch} />
 			{ renderUI() }
-		</>
+		</div>
 	);
 }
 

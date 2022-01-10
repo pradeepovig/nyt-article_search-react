@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import {AppDataProvider} from "./contexts/App.context";
 import RenderRoutes from "./core/routes";
 
