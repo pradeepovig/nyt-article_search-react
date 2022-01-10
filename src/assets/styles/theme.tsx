@@ -1,4 +1,5 @@
 import { ThemeProvider } from "styled-components";
+import {AppProps} from "../../core/interfaces/app.interface";
 
 const theme = {
   colors: {
@@ -14,8 +15,8 @@ const theme = {
   }
 };
 
-const Theme = ({ children }) => (
-  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+const Theme = (props: AppProps) => (
+  <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
 );
 
 export default Theme;
