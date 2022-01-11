@@ -14,11 +14,6 @@ const PUBLIC_ROUTES = [
 		key: 'HOME',
 		component: <Home />
 	},
-	// {
-	// 	path: 'article',
-	// 	key: 'ARTICLE',
-	// 	component: <Article />
-	// },
 	{
 		path: '/:year/:month/:day/:cat/:subcat/:title?',
 		key: 'ARTICLE',

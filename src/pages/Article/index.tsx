@@ -84,8 +84,7 @@ const ArticlePage = (): JSX.Element => {
 	return (
 		<div className="articlePage">
 			{
-				// isValidURL(articleURL) ? renderUI() : <Navigate to="/404" />
-				renderUI()
+				isValidURL(articleURL) ? renderUI() : <Navigate to="/404" />
 			}
 		</div>
 	);
