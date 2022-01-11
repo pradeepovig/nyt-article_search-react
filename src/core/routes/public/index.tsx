@@ -8,21 +8,23 @@ const Article = lazy(() => import("../../../pages/Article"));
 // @ts-ignore
 const Error404 = lazy(() => import("../../../pages/Error404"));
 
+// Custom hook for
 const PUBLIC_ROUTES = [
 	{
 		path: '/',
 		key: 'HOME',
-		component: <Home />
+		element: <Home />
 	},
 	{
-		path: '/:year/:month/:day/:cat/:subcat/:title?',
+		// path: '/article/:year/:month/:day/:cat/:subcat/:title?',
+		path: '/article/*',
 		key: 'ARTICLE',
-		component: <Article />
+		element: <Article />
 	},
 	{
 		path: '*',
-		component: <Error404 />,
-		key: 'OTHER'
+		key: 'OTHERPATH',
+		element: <Error404 />
 	}
 ];
 

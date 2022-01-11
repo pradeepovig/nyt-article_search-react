@@ -226,3 +226,21 @@ header {
 	margin-top: 1rem;
 	padding: 0.5rem 0;
 }
+
+.uiState {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.uiStateMessage {
+		margin: 0;
+	}
+
+	.uiStateNote {
+		margin: 0;
+	}
+
+	svg {
+		width: 4rem;
+	}
+}

@@ -1,8 +1,8 @@
-import React, { Suspense } from "react";
+import React, {Suspense} from "react";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import MainLayout from "../../layouts/main";
-import PUBLIC_ROUTES from "./public";
 import {RouteProps} from "../interfaces/route.interface";
+import PUBLIC_ROUTES from "./public";
 
 const RenderRoutes = (): React.ReactElement => {
 	return (
@@ -13,7 +13,7 @@ const RenderRoutes = (): React.ReactElement => {
 						{/* Note: Switch is now Routes in v6 */}
 						{
 							PUBLIC_ROUTES.map(
-								({ path, key, component }: RouteProps): JSX.Element => <Route path={path} element={component} key={key} />
+								({ path, element, key }: RouteProps): JSX.Element => <Route path={path} element={element} key={key}/>
 							)
 						}
 					</Routes>
