@@ -12,7 +12,7 @@ import {
 import Pagination from "../../components/Pagination";
 import ArticlesList from "../../components/ArticlesList";
 import Empty from "../../components/shared/Empty";
-import ContentLoader from "react-content-loader";
+import ArticleItemLoader from "../../components/ArticleItemLoader";
 
 const HomePage = (): JSX.Element => {
 	const [uiState, setUIState] = useState(UI_STATE_DEFAULT);
@@ -20,12 +20,10 @@ const HomePage = (): JSX.Element => {
 	const [totalPages, setTotalPages] = useState(0);
 	const appContext = useContext(AppContext);
 
-	const searchArticles = (query: string, page: number) => {
-		appContext.setFetchingArticles(true);
-		appContext.setSearchQuery(query);
-		let pages = 0;
+	const searchArticles = (page: number) => {
+		setUIState(UI_STATE_LOADING);
 
-		SearchAPIService(query, page).then(({status, data}) => {
+		SearchAPIService(appContext.searchQuery, page).then(({status, data}) => {
 			if(status) {
 				appContext.setFetchArticlesResponse(data);
 
@@ -35,65 +33,49 @@ const HomePage = (): JSX.Element => {
 					setUIState(UI_STATE_EMPTY);
 				}
 
-				pages = data.response.meta.hits ? ( Math.floor(data.response.meta.hits / 10) ) + ( data.response.meta.hits % 10 ) : 0;
+				let pages = data.response.meta.hits ? ( Math.floor(data.response.meta.hits / 10) ) + ( data.response.meta.hits % 10 ) : 0;
+				setTotalPages(pages);
 			} else {
 				setUIState(UI_STATE_ERROR);
 			}
-
-			console.log(page);
-			setTotalPages(pages);
+		}).catch(e => {
+			console.error(e);
+			setUIState(UI_STATE_ERROR);
 		});
 	};
 
 	useEffect(() => {
+		// When user navigates back to Home and if there was already a search query
 		if (appContext.searchQuery?.length) {
-			searchArticles(appContext.searchQuery, page);
+			searchArticles(page);
 		}
-	}, []);
+	}, [appContext.searchQuery]);
 
 	const handleSearch = (query: string) => {
-		searchArticles(query, 0);
+		appContext.setSearchQuery(query);
 	};
 
 	const handlePagination = (direction: string) => {
-		const currPage = ( appContext.fetchArticlesResponse.response.meta.offset / 10 ) - 1;
-
 		switch(direction) {
 			case PAGINATION_BWD:
-				if (currPage > page) {
-					setPage(page - 1);
-					searchArticles(appContext.searchQuery, page);
-				}
+				setPage(page - 1);
 				break;
 			default:
-				if (currPage < page) {
-					setPage(page - 1);
-					searchArticles(appContext.searchQuery, page);
-				}
+				setPage(page + 1);
 				break;
 		}
-
 	};
 
 	const renderUI = () => {
 		switch(uiState) {
 			case UI_STATE_LOADING:
 				return (
-					<div aria-label="Content Loader">
-						<ContentLoader
-							speed={2}
-							width={740}
-							gradientRatio={0.2}
-							height={784}
-							viewBox="0 0 740 784"
-							backgroundColor="#f3f3f3"
-							foregroundColor="#ecebeb"
-						>
-							<rect x="0" y="34" rx="3" ry="3" width="52" height="6" />
-							<rect x="0" y="54" rx="3" ry="3" width="360" height="6" />
-							<rect x="0" y="72" rx="3" ry="3" width="360" height="6" />
-							<rect x="297" y="90" rx="3" ry="3" width="64" height="16" />
-						</ContentLoader>
+					<div aria-label="Content Loader" className="contentLoader">
+						<>
+							{
+								[1, 2, 3].map((elem) => (<ArticleItemLoader key={elem}/>))
+							}
+						</>
 					</div>
 				);
 			case UI_STATE_EMPTY:
@@ -105,7 +87,6 @@ const HomePage = (): JSX.Element => {
 							<label htmlFor="searchArticles">Results: { totalPages }</label>
 							<ArticlesList id="searchArticles" articles={appContext.fetchArticlesResponse.response.docs} />
 						</section>
-						<Pagination page={page} totalPages={totalPages} onPaginate={handlePagination}/>
 					</>
 				);
 			default:
@@ -117,6 +98,7 @@ const HomePage = (): JSX.Element => {
 		<div className="homePage">
 			<SearchBar onSearch={handleSearch} />
 			{ renderUI() }
+			{ totalPages > 0 && <Pagination page={page} totalPages={totalPages} onPaginate={handlePagination}/> }
 		</div>
 	);
 }

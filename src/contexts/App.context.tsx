@@ -4,25 +4,21 @@ import {ArticleProps, FetchArticlesResponseProps} from "../core/interfaces/artic
 import FetchArticlesMock from "../tests/mocks/fetchArticles.mock";
 import ArticlesMock from "../tests/mocks/articles.mock";
 
+interface AppContextProps {
+	fetchArticlesResponse: FetchArticlesResponseProps;
+	searchQuery: string;
+	article: ArticleProps;
+	articleURL: string;
+	setFetchArticlesResponse: (val: FetchArticlesResponseProps) => void;
+	setSearchQuery: (val: string) => void;
+	setArticle: (val: ArticleProps) => void;
+	setArticleURL: (val: string) => void;
+}
+
 // Ignore Unused parameter warning
-const AppContext = createContext({
-	fetchingArticles: false,
-	fetchArticlesResponse: FetchArticlesMock,
-	searchQuery: '',
-	article: ArticlesMock[0],
-	articleURL: '',
-	setFetchingArticles: (val: boolean) => {},
-	setFetchArticlesResponse: (val: FetchArticlesResponseProps) => {},
-	setSearchQuery: (val: string) => {},
-	setArticle: (val: ArticleProps) => {},
-	setArticleURL: (val: string) => {}
-});
+const AppContext = createContext<AppContextProps>({} as AppContextProps);
 
 const AppDataProvider = (props: AppProps) => {
-	const setFetchingArticles = (fetchingArticles: boolean) => {
-		setState({...state, fetchingArticles});
-	}
-
 	const setFetchArticlesResponse = (fetchArticlesResponse: FetchArticlesResponseProps) => {
 		setState({...state, fetchArticlesResponse});
 	};
@@ -41,12 +37,10 @@ const AppDataProvider = (props: AppProps) => {
 
 	// Value that will be given to the context, i.e state
 	const [state, setState] = useState({
-		fetchingArticles: false,
 		fetchArticlesResponse: FetchArticlesMock,
 		searchQuery: '',
 		article: ArticlesMock[0],
 		articleURL: '',
-		setFetchingArticles,
 		setFetchArticlesResponse,
 		setSearchQuery,
 		setArticle,
@@ -60,4 +54,4 @@ const AppDataProvider = (props: AppProps) => {
 	)
 }
 
-export { AppContext , AppDataProvider }
+export { AppContext, AppDataProvider }

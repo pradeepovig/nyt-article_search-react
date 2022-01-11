@@ -12,16 +12,23 @@ const PUBLIC_ROUTES = [
 	{
 		path: '/',
 		key: 'HOME',
-		exact: true,
 		component: <Home />
 	},
+	// {
+	// 	path: 'article',
+	// 	key: 'ARTICLE',
+	// 	component: <Article />
+	// },
 	{
 		path: '/:year/:month/:day/:cat/:subcat/:title?',
 		key: 'ARTICLE',
-		exact: true,
 		component: <Article />
 	},
-	{ path: "*", component: <Error404 />, exact: true, key: 'OTHER' }
+	{
+		path: '*',
+		component: <Error404 />,
+		key: 'OTHER'
+	}
 ];
 
 export default PUBLIC_ROUTES;

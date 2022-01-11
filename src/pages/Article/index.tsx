@@ -15,13 +15,12 @@ import Empty from "../../components/shared/Empty";
 import ContentLoader from "react-content-loader";
 
 const ArticlePage = (): JSX.Element => {
+	const appContext = useContext(AppContext);
+	let [uiState, setUIState] = useState(UI_STATE_DEFAULT);
 	let { title, cat, subcat, year, month, day } = useParams<Record<string, string | undefined>>();
 	const articleURL = title ?
 		`${year}/${month}/${day}/${cat}/${subcat}/${title}` :
 		`${year}/${month}/${day}/${cat}/${subcat}`;
-
-	const appContext = useContext(AppContext);
-	let [uiState, setUIState] = useState(UI_STATE_DEFAULT);
 
 	useEffect(() => {
 		setUIState(UI_STATE_LOADING);
@@ -32,6 +31,7 @@ const ArticlePage = (): JSX.Element => {
 			ArticleAPIService(articleURL).then(res => {
 				if (res.status) {
 					appContext.setArticle(res.data.response.docs[0]);
+					setUIState(UI_STATE_SUCCESS);
 				} else {
 					setUIState(UI_STATE_ERROR);
 				}
@@ -41,29 +41,28 @@ const ArticlePage = (): JSX.Element => {
 			});
 		}
 
-		setDocumentTitle(appContext.article.headline.main || appContext.article.headline.main);
+		setDocumentTitle(appContext.article?.headline.main || appContext.article?.headline.print_headline || 'NYT');
 	}, []);
 
 	const renderUI = () => {
 		switch(uiState) {
 			case UI_STATE_LOADING:
 				return (
-					<div aria-label="Content Loader">
+					<div aria-label="Content Loader" className="contentLoader">
 						<ContentLoader
 							speed={2}
-							width={740}
 							gradientRatio={0.2}
-							height={1024}
-							viewBox="0 0 470 1024"
+							viewBox="0 0 800 600"
 							backgroundColor="#f3f3f3"
 							foregroundColor="#ecebeb"
 						>
-							<rect x="0" y="34" rx="3" ry="3" width="360" height="18" />
-							<rect x="0" y="64" rx="3" ry="3" width="36" height="6" />
-							<rect x="0" y="84" rx="3" ry="3" width="360" height="6" />
-							<rect x="0" y="96" rx="3" ry="3" width="360" height="6" />
-							<rect x="0" y="108" rx="3" ry="3" width="360" height="6" />
-							<rect x="0" y="128" rx="3" ry="3" width="36" height="6" />
+							<rect x="0" y="34" rx="3" ry="3" width="36" height="6" />
+							<rect x="0" y="46" rx="3" ry="3" width="800" height="18" />
+							<rect x="0" y="76" rx="3" ry="3" width="36" height="6" />
+							<rect x="0" y="96" rx="3" ry="3" width="800" height="6" />
+							<rect x="0" y="114" rx="3" ry="3" width="800" height="6" />
+							<rect x="0" y="132" rx="3" ry="3" width="800" height="6" />
+							<rect x="0" y="150" rx="3" ry="3" width="36" height="6" />
 						</ContentLoader>
 					</div>
 				);
@@ -74,7 +73,7 @@ const ArticlePage = (): JSX.Element => {
 					<>
 						<Link to={"/"}>Go to results page</Link>
 						<Article data={appContext.article}/>
-						<a className="button" aria-label="Read full story" href={appContext.article.web_url}>Read full story</a>
+						<a className="button" aria-label="Read full story" href={appContext.article?.web_url}>Read full story</a>
 					</>
 				);
 			default:
@@ -83,7 +82,12 @@ const ArticlePage = (): JSX.Element => {
 	};
 
 	return (
-		isValidURL(articleURL) ? renderUI() : <Navigate to="/404" />
+		<div className="articlePage">
+			{
+				// isValidURL(articleURL) ? renderUI() : <Navigate to="/404" />
+				renderUI()
+			}
+		</div>
 	);
 }
 

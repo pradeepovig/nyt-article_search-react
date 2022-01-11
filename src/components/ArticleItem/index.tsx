@@ -10,6 +10,7 @@ interface ArticleItemProps {
 const ArticleItem = ({ data }: ArticleItemProps): JSX.Element => {
 	return (
 		<article className="articleListItem">
+			{/*<Link to={`/article/${getArticlePageURL(data.web_url)}`}>*/}
 			<Link to={getArticlePageURL(data.web_url)}>
 				<i className="articleDate">{ data.pub_date }</i>
 				<h1 className="articleHeadline">{ data.headline.main }</h1>

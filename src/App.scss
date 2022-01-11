@@ -125,6 +125,9 @@ header {
 // 1. Home Page
 
 .homePage {
+	height: 100%;
+	max-height: 100%;
+
 	label {
 		display: block;
 		font-weight: 600;
@@ -147,6 +150,10 @@ header {
 		padding: 0;
 		max-height: 50vh;
 		overflow-y: auto;
+	}
+
+	.contentLoader {
+		flex: 1 1 auto;
 	}
 
 	.articleListItem {
@@ -186,6 +193,11 @@ header {
 }
 
 // 2. Article Page
+.articlePage {
+	.contentLoader {
+		flex: 1 1 auto;
+	}
+}
 
 // 3. Shared Components
 
@@ -210,6 +222,7 @@ header {
 .pagination {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	margin-top: 1rem;
 	padding: 0.5rem 0;
 }
