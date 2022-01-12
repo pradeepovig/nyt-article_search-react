@@ -1,15 +1,14 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import { FunctionComponent } from "react";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
-import {AppContext} from "../../contexts/App.context";
 
 type SearchBarTypes = {
-	onSearch: Function
+	cachedQuery: string;
+	onSearch: (val: string) => void;
 }
 
-const SearchBar: FunctionComponent<SearchBarTypes> = ({ onSearch }): JSX.Element => {
-	const appContext = useContext(AppContext);
-	const [searchQuery, setSearchQuery] = useState(appContext.searchQuery);
+const SearchBar: FunctionComponent<SearchBarTypes> = ({ cachedQuery, onSearch }: SearchBarTypes): JSX.Element => {
+	const [searchQuery, setSearchQuery] = useState(cachedQuery);
 
 	const handleSearch = (key: string) => {
 		if (key === "Enter") {

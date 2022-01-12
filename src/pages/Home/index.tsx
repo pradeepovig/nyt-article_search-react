@@ -15,7 +15,7 @@ import useSearchArticles from "../../core/hooks/useSearchArticles";
 const HomePage = (): JSX.Element => {
 	const appContext = useContext(AppContext);
 	const [query, setQuery] = useState(appContext.searchQuery);
-	const [page, setPage] = useState(0);
+	const [page, setPage] = useState(appContext.articlesPage);
 
 	// Fetch Article data
 	const [ uiState, articlesData, totalPages ] = useSearchArticles(query, page);
@@ -55,7 +55,7 @@ const HomePage = (): JSX.Element => {
 
 	return (
 		<div className="homePage">
-			<SearchBar onSearch={handleSearch} />
+			<SearchBar cachedQuery={query} onSearch={handleSearch}/>
 			{ BuildUI(uiState, <SearchArticlesLoader />, MainComponent, <Empty />, <Error />) }
 			{ PaginationComponent }
 		</div>

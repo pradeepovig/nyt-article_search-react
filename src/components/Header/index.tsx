@@ -7,7 +7,7 @@ export default function Header(): JSX.Element{
 				<img src="/logo.svg" alt="NYT Logo" />
 			</Link>
 
-			<h1>"The New York Times" article search application</h1>
+			<h1 className="headerTitle">"The New York Times" article search application</h1>
 
 			<div className="blocker" />
 		</header>
