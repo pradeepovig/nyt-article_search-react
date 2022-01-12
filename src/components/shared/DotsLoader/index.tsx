@@ -1,13 +1,14 @@
-const LoadingSpinner = () => {
+import './index.scss';
+
+const DotsLoader = () => {
 	return (
-		<div className="wrapper">
-			<div className="spinner">
-				<div className="spinner-1" />
-				<div className="spinner-2" />
-				<div className="spinner-3" />
-			</div>
+		<div className="dotsLoader">
+			<div />
+			<div />
+			<div />
+			<div />
 		</div>
 	);
 };
 
-export default LoadingSpinner;
+export default DotsLoader;
