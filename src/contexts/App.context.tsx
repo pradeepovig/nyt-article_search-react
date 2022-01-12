@@ -1,25 +1,25 @@
 import { useState, createContext } from 'react'
-import {AppProps} from "../core/interfaces/app.interface";
-import {ArticleProps, FetchArticlesResponseProps} from "../core/interfaces/article.interface";
+import {AppTypes} from "../core/interfaces/app.interface";
+import {ArticleTypes, FetchArticlesResponseTypes} from "../core/interfaces/article.interface";
 import FetchArticlesMock from "../tests/mocks/fetchArticles.mock";
 import ArticlesMock from "../tests/mocks/articles.mock";
 
-interface AppContextProps {
-	fetchArticlesResponse: FetchArticlesResponseProps;
+interface AppContextTypes {
+	fetchArticlesResponse: FetchArticlesResponseTypes;
 	searchQuery: string;
-	article: ArticleProps;
+	article: ArticleTypes;
 	articleURL: string;
-	setFetchArticlesResponse: (val: FetchArticlesResponseProps) => void;
+	setFetchArticlesResponse: (val: FetchArticlesResponseTypes) => void;
 	setSearchQuery: (val: string) => void;
-	setArticle: (val: ArticleProps) => void;
+	setArticle: (val: ArticleTypes) => void;
 	setArticleURL: (val: string) => void;
 }
 
 // Ignore Unused parameter warning
-const AppContext = createContext<AppContextProps>({} as AppContextProps);
+const AppContext = createContext<AppContextTypes>({} as AppContextTypes);
 
-const AppDataProvider = (props: AppProps) => {
-	const setFetchArticlesResponse = (fetchArticlesResponse: FetchArticlesResponseProps) => {
+const AppDataProvider = (props: AppTypes) => {
+	const setFetchArticlesResponse = (fetchArticlesResponse: FetchArticlesResponseTypes) => {
 		setState({...state, fetchArticlesResponse});
 	};
 
@@ -27,7 +27,7 @@ const AppDataProvider = (props: AppProps) => {
 		setState({...state, searchQuery});
 	};
 
-	const setArticle = (article: ArticleProps) => {
+	const setArticle = (article: ArticleTypes) => {
 		setState({...state, article});
 	};
 

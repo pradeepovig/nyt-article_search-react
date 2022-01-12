@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import Article from "../../components/Article";
 import {AppContext} from "../../contexts/App.context";
-import {isValidURL, setDocumentTitle} from "../../core/utils";
+import {isValidPath, setDocumentTitle} from "../../core/utils";
 import ArticleAPIService from "../../services/API/ArticleAPI.service";
 import {
 	UI_STATE_DEFAULT,
@@ -13,41 +13,51 @@ import {
 } from "../../core/static/constants";
 import Empty from "../../components/shared/Empty";
 import ArticlePageLoader from "../../components/ArticlePageLoader";
-import {ArticleProps} from "../../core/interfaces/article.interface";
+import {ArticleTypes} from "../../core/interfaces/article.interface";
+import useFetchArticle from "../../core/hooks/useFetchArticle";
 
 const ArticlePage = (): JSX.Element => {
 	const appContext = useContext(AppContext);
-	let [uiState, setUIState] = useState(UI_STATE_DEFAULT);
+
+	// let [uiState, setUIState] = useState(UI_STATE_DEFAULT);
 	let params = useParams<Record<string, string | undefined>>();
-	const articleURL = params['*'] || '';
 
-	useEffect(() => {
-		let article: ArticleProps = {} as ArticleProps;
-		setUIState(UI_STATE_LOADING);
+	// Get Article path from the browser
+	const articlePath = params['*'] || '';
 
-		// If there isn't any saved article or the URL is different from the current one
-		if (!appContext.article || articleURL !== appContext.articleURL) {
-			//	Fetch article here
-			ArticleAPIService(articleURL).then(({status, data}) => {
-				if (status) {
-					if (data.response.docs.length) {
-						article = data.response.docs[0];
-						appContext.setArticle(article);
-						setUIState(UI_STATE_SUCCESS);
-					} else {
-						setUIState(UI_STATE_EMPTY);
-					}
-				} else {
-					setUIState(UI_STATE_ERROR);
-				}
-			}).catch(e => {
-				console.error(e);
-				setUIState(UI_STATE_ERROR);
-			});
-		}
+	// Fetch Article data
+	const [ uiState, articleData ] = useFetchArticle(articlePath, appContext.article, appContext.articleURL);
 
-		setDocumentTitle(article.headline?.main || article.headline?.print_headline || 'NYT');
-	}, []);
+	// useEffect(() => {
+	// 	let article: ArticleTypes = {} as ArticleTypes;
+	// 	setUIState(UI_STATE_LOADING);
+	//
+	// 	// If there isn't any saved article or the URL is different from the current one
+	// 	if (!appContext.article || articleURL !== appContext.articleURL) {
+	// 		//	Fetch article here
+	// 		ArticleAPIService(articleURL).then(({status, data}) => {
+	// 			if (status) {
+	// 				if (data.response.docs.length) {
+	// 					article = data.response.docs[0];
+	// 					appContext.setArticle(article);
+	// 					appContext.setArticleURL(articleURL);
+	// 					setUIState(UI_STATE_SUCCESS);
+	// 				} else {
+	// 					setUIState(UI_STATE_EMPTY);
+	// 				}
+	// 			} else {
+	// 				setUIState(UI_STATE_ERROR);
+	// 			}
+	// 		}).catch(e => {
+	// 			console.error(e);
+	// 			setUIState(UI_STATE_ERROR);
+	// 		});
+	// 	} else {
+	// 		setUIState(UI_STATE_SUCCESS);
+	// 	}
+	//
+	// 	setDocumentTitle(article.headline?.main || article.headline?.print_headline || 'NYT');
+	// }, []);
 
 	const renderUI = () => {
 		switch(uiState) {
@@ -57,11 +67,11 @@ const ArticlePage = (): JSX.Element => {
 				return <Empty />;
 			case UI_STATE_SUCCESS:
 				return (
-					isValidURL(articleURL) ?
+					isValidPath(articlePath) ?
 						(
 							<>
 								<Link to={"/"}>Go to results page</Link>
-								<Article data={appContext.article}/>
+								<Article data={articleData}/>
 								<a className="button" aria-label="Read full story" href={appContext.article?.web_url}>Read full story</a>
 							</>
 						) :

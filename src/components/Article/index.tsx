@@ -1,10 +1,10 @@
-import {ArticleProps} from "../../core/interfaces/article.interface";
+import {ArticleTypes} from "../../core/interfaces/article.interface";
 
-interface ArticleComponentProps {
-	data: ArticleProps
+interface ArticleComponentTypes {
+	data: ArticleTypes
 }
 
-const Article = (props: ArticleComponentProps): JSX.Element => {
+const Article = (props: ArticleComponentTypes): JSX.Element => {
 	return (
 		<article>
 			<h1 className="articleHeadline">{props.data.headline.main}</h1>

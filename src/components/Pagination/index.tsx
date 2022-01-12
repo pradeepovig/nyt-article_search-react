@@ -1,7 +1,7 @@
-import {PaginationProps} from "../../core/interfaces/pagination.interface";
+import {PaginationTypes} from "../../core/interfaces/pagination.interface";
 import {PAGINATION_BWD, PAGINATION_FWD} from "../../core/static/constants";
 
-const Pagination = ({ page, totalPages, onPaginate }: PaginationProps): JSX.Element => {
+const Pagination = ({ page, totalPages, onPaginate }: PaginationTypes): JSX.Element => {
 	return (
 		<div className="pagination">
 			<button disabled={page === 0} className="paginationButton" type="button" onClick={() => onPaginate(PAGINATION_BWD)}>{'<'} Prev Page</button>

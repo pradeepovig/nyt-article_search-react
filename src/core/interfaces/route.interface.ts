@@ -1,6 +1,6 @@
 import React from "react";
 
-export interface RouteProps {
+export interface RouteTypes {
 	path: string,
 	children?: any,
 	key?: string,

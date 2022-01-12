@@ -1,5 +1,5 @@
 import React from "react";
 
-export interface AppProps {
+export interface AppTypes {
 	children: React.ReactNode;
 }

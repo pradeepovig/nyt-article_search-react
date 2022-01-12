@@ -1,4 +1,4 @@
-export interface ArticleProps {
+export interface ArticleTypes {
 	web_url: string;
 	snippet: string;
 	lead_paragraph: string;
@@ -14,11 +14,11 @@ export interface ArticleProps {
 	pub_date: string;
 }
 
-export interface FetchArticlesResponseProps {
+export interface FetchArticlesResponseTypes {
 	status: string;
 	copyright: string;
 	response: {
-		docs: ArticleProps[];
+		docs: ArticleTypes[];
 		meta: {
 			hits: number;
 			offset: number;
@@ -35,4 +35,8 @@ export interface ParamTypes {
 	year: string | undefined;
 	month: string | undefined;
 	day: string | undefined;
+}
+
+export interface UseFetchArticleTypes {
+
 }

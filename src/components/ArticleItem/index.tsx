@@ -1,13 +1,13 @@
-import {ArticleProps} from "../../core/interfaces/article.interface";
+import {ArticleTypes} from "../../core/interfaces/article.interface";
 import {Link} from "react-router-dom";
 import {getArticlePageURL} from "../../core/utils";
 
-interface ArticleItemProps {
-	data: ArticleProps,
+interface ArticleItemTypes {
+	data: ArticleTypes,
 	key?: string
 }
 
-const ArticleItem = ({ data }: ArticleItemProps): JSX.Element => {
+const ArticleItem = ({ data }: ArticleItemTypes): JSX.Element => {
 	return (
 		<article className="articleListItem">
 			<Link to={`/article/${getArticlePageURL(data.web_url)}`}>

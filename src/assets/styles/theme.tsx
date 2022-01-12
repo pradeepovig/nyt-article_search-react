@@ -1,5 +1,5 @@
 import { ThemeProvider } from "styled-components";
-import {AppProps} from "../../core/interfaces/app.interface";
+import {AppTypes} from "../../core/interfaces/app.interface";
 
 const theme = {
   colors: {
@@ -15,7 +15,7 @@ const theme = {
   }
 };
 
-const Theme = (props: AppProps) => (
+const Theme = (props: AppTypes) => (
   <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
 );
 

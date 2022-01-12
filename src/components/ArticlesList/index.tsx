@@ -1,17 +1,17 @@
 import { memo } from "react";
 import ArticleItem from "../ArticleItem";
-import {ArticleProps} from "../../core/interfaces/article.interface";
+import {ArticleTypes} from "../../core/interfaces/article.interface";
 
-interface ArticlesListProps {
-	articles: ArticleProps[]
+interface ArticlesListTypes {
+	articles: ArticleTypes[]
 	id?: string
 }
 
-const ArticlesList = (props: ArticlesListProps): JSX.Element => {
+const ArticlesList = (props: ArticlesListTypes): JSX.Element => {
 	return(
 		<ul className="articlesList">
 			{
-				props.articles.map((articleItem: ArticleProps) => (<ArticleItem key={articleItem.pub_date} data={articleItem} />))
+				props.articles.map((articleItem: ArticleTypes) => (<ArticleItem key={articleItem.pub_date} data={articleItem} />))
 			}
 		</ul>
 	);

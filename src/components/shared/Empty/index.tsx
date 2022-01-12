@@ -1,11 +1,11 @@
 import { ReactComponent as EmptySVG } from '../../../assets/icons/no-results.svg';
 
-interface EmptyProps {
+interface EmptyTypes {
 	msg?: string,
 	note?: string
 }
 
-const Empty = ({ msg, note }: EmptyProps): JSX.Element => {
+const Empty = ({ msg, note }: EmptyTypes): JSX.Element => {
 	return (
 		<div className="uiState empty">
 			<EmptySVG />

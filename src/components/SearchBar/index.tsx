@@ -3,11 +3,11 @@ import { FunctionComponent } from "react";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
 import {AppContext} from "../../contexts/App.context";
 
-type SearchBarProps = {
+type SearchBarTypes = {
 	onSearch: Function
 }
 
-const SearchBar: FunctionComponent<SearchBarProps> = ({ onSearch }): JSX.Element => {
+const SearchBar: FunctionComponent<SearchBarTypes> = ({ onSearch }): JSX.Element => {
 	const appContext = useContext(AppContext);
 	const [searchQuery, setSearchQuery] = useState(appContext.searchQuery);
 
