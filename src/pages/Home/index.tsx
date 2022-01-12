@@ -38,7 +38,7 @@ const HomePage = (): JSX.Element => {
 				break;
 		}
 
-		appContext.setArticlesPage(page);
+		appContext.setArticlesPage(newPage);
 		setPage(newPage);
 	};
 
