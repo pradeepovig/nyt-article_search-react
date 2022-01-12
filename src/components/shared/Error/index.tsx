@@ -1,6 +1,11 @@
 import { ReactComponent as ExclamationSVG } from '../../../assets/icons/exclamation.svg';
 
-const Error = (msg: string, note: string): JSX.Element => {
+interface ErrorTypes {
+	msg?: string;
+	note?: string;
+}
+
+const Error = ({msg, note}: ErrorTypes): JSX.Element => {
 	return (
 		<div className="uiState empty">
 			<ExclamationSVG />

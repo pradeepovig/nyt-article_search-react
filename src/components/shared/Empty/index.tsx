@@ -1,8 +1,8 @@
 import { ReactComponent as EmptySVG } from '../../../assets/icons/no-results.svg';
 
 interface EmptyTypes {
-	msg?: string,
-	note?: string
+	msg?: string;
+	note?: string;
 }
 
 const Empty = ({ msg, note }: EmptyTypes): JSX.Element => {

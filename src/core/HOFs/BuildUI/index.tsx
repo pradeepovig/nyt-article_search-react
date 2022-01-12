@@ -6,17 +6,23 @@
 import React from "react";
 import {UI_STATE_EMPTY, UI_STATE_ERROR, UI_STATE_LOADING, UI_STATE_SUCCESS} from "../../static/constants";
 
-const BuildUI = (uiState: string, LoadingComponent: React.FunctionComponent, SuccessComponent: React.FunctionComponent, EmptyComponent: React.FunctionComponent, ErrorComponent: React.FunctionComponent): JSX.Element => {
+const BuildUI = (
+	uiState: string,
+	LoadingComponent: JSX.Element,
+	SuccessComponent: JSX.Element,
+	EmptyComponent: JSX.Element,
+	ErrorComponent: JSX.Element
+): JSX.Element => {
 	const uiComponent = () => {
 		switch(uiState) {
 			case UI_STATE_LOADING:
-				return <LoadingComponent />;
+				return LoadingComponent;
 			case UI_STATE_EMPTY:
-				return <EmptyComponent />;
+				return EmptyComponent;
 			case UI_STATE_SUCCESS:
-				return <SuccessComponent />;
+				return SuccessComponent;
 			case UI_STATE_ERROR:
-				return <ErrorComponent />;
+				return ErrorComponent;
 			default:
 				return <></>;
 		}
