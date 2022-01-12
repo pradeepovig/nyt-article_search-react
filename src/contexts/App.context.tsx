@@ -5,13 +5,15 @@ import FetchArticlesMock from "../tests/mocks/fetchArticles.mock";
 import ArticlesMock from "../tests/mocks/articles.mock";
 
 interface AppContextTypes {
-	fetchArticlesResponse: FetchArticlesResponseTypes;
+	articlesData: FetchArticlesResponseTypes;
+	articlesPage: number,
 	searchQuery: string;
-	article: ArticleTypes;
+	articleData: ArticleTypes;
 	articleURL: string;
-	setFetchArticlesResponse: (val: FetchArticlesResponseTypes) => void;
+	setArticlesData: (val: FetchArticlesResponseTypes) => void;
+	setArticlesPage: (val: number) => void;
 	setSearchQuery: (val: string) => void;
-	setArticle: (val: ArticleTypes) => void;
+	setArticleData: (val: ArticleTypes) => void;
 	setArticleURL: (val: string) => void;
 }
 
@@ -19,16 +21,20 @@ interface AppContextTypes {
 const AppContext = createContext<AppContextTypes>({} as AppContextTypes);
 
 const AppDataProvider = (props: AppTypes) => {
-	const setFetchArticlesResponse = (fetchArticlesResponse: FetchArticlesResponseTypes) => {
-		setState({...state, fetchArticlesResponse});
+	const setArticlesData = (articlesData: FetchArticlesResponseTypes) => {
+		setState({...state, articlesData});
+	};
+
+	const setArticlesPage = (articlesPage: number) => {
+		setState({...state, articlesPage});
 	};
 
 	const setSearchQuery = (searchQuery: string) => {
 		setState({...state, searchQuery});
 	};
 
-	const setArticle = (article: ArticleTypes) => {
-		setState({...state, article});
+	const setArticleData = (articleData: ArticleTypes) => {
+		setState({...state, articleData});
 	};
 
 	const setArticleURL = (articleURL: string) => {
@@ -37,13 +43,15 @@ const AppDataProvider = (props: AppTypes) => {
 
 	// Value that will be given to the context, i.e state
 	const [state, setState] = useState({
-		fetchArticlesResponse: FetchArticlesMock,
+		articlesData: FetchArticlesMock,
+		articlesPage: 0,
 		searchQuery: '',
-		article: ArticlesMock[0],
+		articleData: ArticlesMock[0],
 		articleURL: '',
-		setFetchArticlesResponse,
+		setArticlesData,
+		setArticlesPage,
 		setSearchQuery,
-		setArticle,
+		setArticleData,
 		setArticleURL
 	});
 

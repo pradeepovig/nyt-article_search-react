@@ -11,14 +11,14 @@ import Empty from "../../components/shared/Empty";
 
 const ArticlePage = (): JSX.Element => {
 	// Cached article in the app context
-	const { article, articleURL } = useContext(AppContext);
+	const appContext = useContext(AppContext);
 
 	// Get Article path from the browser
 	const params = useParams<Record<string, string | undefined>>();
 	const currentArticlePath = params['*'] || '';
 
 	// Fetch Article data
-	const [ uiState, articleData ] = useFetchArticle(currentArticlePath, article, articleURL);
+	const [ uiState, articleData ] = useFetchArticle(currentArticlePath, appContext.articleData, appContext.articleURL);
 
 	// Main component
 	const MainComponent = (

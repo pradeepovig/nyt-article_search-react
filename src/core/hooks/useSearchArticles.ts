@@ -2,7 +2,7 @@
 * A custom hook to abstract the logic of fetching Article Data
 * */
 
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {
 	UI_STATE_DEFAULT,
 	UI_STATE_EMPTY,
@@ -11,11 +11,9 @@ import {
 	UI_STATE_SUCCESS
 } from "../static/constants";
 import SearchAPIService from "../../services/API/SearchAPI.service";
-// import {AppContext} from "../../contexts/App.context";
 import {FetchArticlesResponseTypes} from "../interfaces/article.interface";
 
 const useFetchArticle = (searchQuery: string, page: number): [string, FetchArticlesResponseTypes, number] => {
-	// const appContext = useContext(AppContext);
 	const [uiState, setUIState] = useState(UI_STATE_DEFAULT);
 	const [totalPages, setTotalPages] = useState(0);
 	const [articlesData, setArticlesData] = useState({} as FetchArticlesResponseTypes);
