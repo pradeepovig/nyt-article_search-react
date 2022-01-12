@@ -11,20 +11,21 @@ const BuildUI = (
 	LoadingComponent: JSX.Element,
 	SuccessComponent: JSX.Element,
 	EmptyComponent: JSX.Element,
-	ErrorComponent: JSX.Element
+	ErrorComponent: JSX.Element,
+	DefaultComponent?: JSX.Element
 ): JSX.Element => {
 	const uiComponent = () => {
 		switch(uiState) {
 			case UI_STATE_LOADING:
 				return LoadingComponent;
-			case UI_STATE_EMPTY:
-				return EmptyComponent;
 			case UI_STATE_SUCCESS:
 				return SuccessComponent;
+			case UI_STATE_EMPTY:
+				return EmptyComponent;
 			case UI_STATE_ERROR:
 				return ErrorComponent;
 			default:
-				return <></>;
+				return ( DefaultComponent || <></> );
 		}
 	};
 

@@ -2,7 +2,7 @@ import React, {useContext, useState} from "react";
 import SearchBar from "../../components/SearchBar";
 import {AppContext} from "../../contexts/App.context";
 import {
-	PAGINATION_BWD
+	PAGINATION_BWD, UI_STATE_SUCCESS
 } from "../../core/static/constants";
 import Pagination from "../../components/Pagination";
 import ArticlesList from "../../components/ArticlesList";
@@ -18,11 +18,14 @@ const HomePage = (): JSX.Element => {
 	const [page, setPage] = useState(appContext.articlesPage);
 
 	// Fetch Article data
-	const [ uiState, articlesData, totalPages ] = useSearchArticles(query, page);
+	let [ uiState, articlesData, totalPages ] = useSearchArticles(query, page);
 
 	const handleSearch = (query: string) => {
 		appContext.setSearchQuery(query);
 		setQuery(query);
+
+		// Reset total pages and page
+		setPage(0);
 	};
 
 	const handlePagination = (direction: string) => {
@@ -45,13 +48,13 @@ const HomePage = (): JSX.Element => {
 	const MainComponent = (
 		<>
 			<section aria-label="Search Results" className="searchResultsContainer">
-				<label htmlFor="searchArticles">Results: { totalPages }</label>
+				{ <label htmlFor="searchArticles">Results: { totalPages }</label> }
 				<ArticlesList id="searchArticles" articles={articlesData?.response?.docs || []} />
 			</section>
 		</>
 	);
 
-	const PaginationComponent = totalPages > 0 && <Pagination page={page} totalPages={totalPages} onPaginate={handlePagination}/>;
+	const PaginationComponent = totalPages > 0 && uiState === UI_STATE_SUCCESS && <Pagination page={page} totalPages={totalPages} onPaginate={handlePagination}/>;
 
 	return (
 		<div className="homePage">

@@ -40,6 +40,8 @@ const useFetchArticle = (searchQuery: string, page: number): [string, FetchArtic
 				console.error(e);
 				setUIState(UI_STATE_ERROR);
 			});
+		} else {
+			setUIState(UI_STATE_DEFAULT);
 		}
 	}, [searchQuery, page]);
 

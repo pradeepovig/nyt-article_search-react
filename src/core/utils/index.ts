@@ -14,3 +14,12 @@ export function isValidPath(params: string) {
 	const format2 = /(\d{4})\/(\d{2})\/(\d{2})\/([\w-]+)\/([\w-]+)/g;
 	return format1.test(params) || format2.test(params);
 }
+
+export function formatDate(date: string, format: string): string {
+	// TODO: Add better date parsing
+	if (!date?.length) {
+		return '';
+	} else {
+		return new Date(Date.parse(date)).toLocaleDateString('en-US').replaceAll('/', '.');
+	}
+}
