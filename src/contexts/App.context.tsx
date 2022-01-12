@@ -21,42 +21,60 @@ interface AppContextTypes {
 const AppContext = createContext<AppContextTypes>({} as AppContextTypes);
 
 const AppDataProvider = (props: AppTypes) => {
-	const setArticlesData = (articlesData: FetchArticlesResponseTypes) => {
-		setState({...state, articlesData});
-	};
+	const [articlesData, setArticlesData] = useState(FetchArticlesMock);
+	const [articlesPage, setArticlesPage] = useState(0);
+	const [searchQuery, setSearchQuery] = useState('');
+	const [articleData, setArticleData] = useState(ArticlesMock[0]);
+	const [articleURL, setArticleURL] = useState('');
 
-	const setArticlesPage = (articlesPage: number) => {
-		setState({...state, articlesPage});
-	};
-
-	const setSearchQuery = (searchQuery: string) => {
-		setState({...state, searchQuery});
-	};
-
-	const setArticleData = (articleData: ArticleTypes) => {
-		setState({...state, articleData});
-	};
-
-	const setArticleURL = (articleURL: string) => {
-		setState({...state, articleURL});
-	};
+	// const setArticlesData = (articlesData: FetchArticlesResponseTypes) => {
+	// 	setState({...state, articlesData});
+	// };
+	//
+	// const setArticlesPage = (articlesPage: number) => {
+	// 	setState({...state, articlesPage});
+	// };
+	//
+	// const setSearchQuery = (searchQuery: string) => {
+	// 	setState({...state, searchQuery});
+	// };
+	//
+	// const setArticleData = (articleData: ArticleTypes) => {
+	// 	setState({...state, articleData});
+	// };
+	//
+	// const setArticleURL = (articleURL: string) => {
+	// 	setState({...state, articleURL});
+	// };
 
 	// Value that will be given to the context, i.e state
-	const [state, setState] = useState({
-		articlesData: FetchArticlesMock,
-		articlesPage: 0,
-		searchQuery: '',
-		articleData: ArticlesMock[0],
-		articleURL: '',
-		setArticlesData,
-		setArticlesPage,
-		setSearchQuery,
-		setArticleData,
-		setArticleURL
-	});
+	// const [state, setState] = useState({
+	// 	articlesData: FetchArticlesMock,
+	// 	articlesPage: 0,
+	// 	searchQuery: '',
+	// 	articleData: ArticlesMock[0],
+	// 	articleURL: '',
+	// 	setArticlesData,
+	// 	setArticlesPage,
+	// 	setSearchQuery,
+	// 	setArticleData,
+	// 	setArticleURL
+	// });
 
 	return (
-		<AppContext.Provider value={state}>
+		// <AppContext.Provider value={state}>
+		<AppContext.Provider value={{
+			articlesData,
+			articlesPage,
+			searchQuery,
+			articleData,
+			articleURL,
+			setArticlesData,
+			setArticlesPage,
+			setSearchQuery,
+			setArticleData,
+			setArticleURL
+		}}>
 			{props.children}
 		</AppContext.Provider>
 	)
