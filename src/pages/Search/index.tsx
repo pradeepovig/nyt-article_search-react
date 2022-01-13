@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import SearchBar from "../../components/SearchBar";
 import {
 	PAGINATION_BWD, UI_STATE_SUCCESS
@@ -10,7 +10,7 @@ import SearchArticlesLoader from "../../components/SearchArticlesLoader";
 import Error from "../../components/shared/Error";
 import BuildUI from "../../core/HOFs/BuildUI";
 import useSearchArticles from "../../core/hooks/useSearchArticles";
-import {createSearchParams, Navigate, useSearchParams} from "react-router-dom";
+import { createSearchParams, Navigate, useSearchParams } from "react-router-dom";
 
 interface SearchPageComponentTypes {
 	query: string;
@@ -28,7 +28,7 @@ const SearchPageComponent = ({ query, page }: SearchPageComponentTypes): JSX.Ele
 	const handleSearch = (searchQuery: string) => {
 		setSearchQuery(searchQuery);
 		setSearchPage(1);
-		setSearchParams(createSearchParams({ query: searchQuery, page: '1' }));
+		setSearchParams(createSearchParams({ query: searchQuery, page: "1" }));
 	};
 
 	const handlePagination = (direction: string) => {
@@ -66,7 +66,7 @@ const SearchPageComponent = ({ query, page }: SearchPageComponentTypes): JSX.Ele
 			{ PaginationComponent }
 		</div>
 	);
-}
+};
 
 const SearchPage = (): JSX.Element => {
 	// Get route params
@@ -79,6 +79,6 @@ const SearchPage = (): JSX.Element => {
 		<SearchPageComponent query={query} page={Number(page)} /> :
 		<Navigate to="/" />
 	);
-}
+};
 
 export default SearchPage;

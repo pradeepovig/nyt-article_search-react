@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import React, { lazy } from "react";
 
 // Lazy loading imports
 const Home = lazy(() => import("../../../pages/Home"));
@@ -9,23 +9,23 @@ const Error404 = lazy(() => import("../../../pages/Error404"));
 // Custom hook for
 const PUBLIC_ROUTES = [
 	{
-		path: '/',
-		key: 'HOME',
+		path: "/",
+		key: "HOME",
 		element: <Home />
 	},
 	{
 		path: "/search/*",
-		key: 'SEARCH',
+		key: "SEARCH",
 		element: <Search />,
 	},
 	{
-		path: '/article/*',
-		key: 'ARTICLE',
+		path: "/article/*",
+		key: "ARTICLE",
 		element: <Article />
 	},
 	{
-		path: '*',
-		key: 'OTHERPATH',
+		path: "*",
+		key: "OTHERPATH",
 		element: <Error404 />
 	}
 ];

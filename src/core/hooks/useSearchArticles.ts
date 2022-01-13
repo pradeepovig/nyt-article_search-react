@@ -2,7 +2,7 @@
 * A custom hook to abstract the logic of fetching Article Data
 * */
 
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import {
 	UI_STATE_DEFAULT,
 	UI_STATE_EMPTY,
@@ -11,9 +11,9 @@ import {
 	UI_STATE_SUCCESS
 } from "../static/constants";
 import SearchAPIService from "../../services/API/SearchAPI.service";
-import {FetchArticlesResponseTypes} from "../interfaces/article.interface";
-import {AppContext} from "../../contexts/App.context";
-import {getTotalPages} from "../utils";
+import { FetchArticlesResponseTypes } from "../interfaces/article.interface";
+import { AppContext } from "../../contexts/App.context";
+import { getTotalPages } from "../utils";
 
 const useFetchArticle = (searchQuery: string, page: number): [string, FetchArticlesResponseTypes, number] => {
 	const appContext = useContext(AppContext);
@@ -30,7 +30,7 @@ const useFetchArticle = (searchQuery: string, page: number): [string, FetchArtic
 			setUIState(UI_STATE_LOADING);
 
 			// Page index starts from 0
-			SearchAPIService(searchQuery, (page - 1)).then(({status, data}) => {
+			SearchAPIService(searchQuery, (page - 1)).then(({ status, data }) => {
 				if(status) {
 					setArticlesData(data);
 
@@ -54,6 +54,6 @@ const useFetchArticle = (searchQuery: string, page: number): [string, FetchArtic
 	}, [searchQuery, page]);
 
 	return [uiState, articlesData, totalPages];
-}
+};
 
 export default useFetchArticle;
