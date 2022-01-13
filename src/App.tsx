@@ -1,6 +1,6 @@
-import React from 'react';
-import './App.scss';
-import {AppDataProvider} from "./contexts/App.context";
+import React from "react";
+import "./App.scss";
+import { AppDataProvider } from "./contexts/App.context";
 import RenderRoutes from "./core/routes";
 
 function App() {

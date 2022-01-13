@@ -1,6 +1,7 @@
+import React from "react";
 import { memo } from "react";
 import ArticleItem from "../ArticleItem";
-import {ArticleTypes} from "../../core/interfaces/article.interface";
+import { ArticleTypes } from "../../core/interfaces/article.interface";
 
 interface ArticlesListTypes {
 	articles: ArticleTypes[]

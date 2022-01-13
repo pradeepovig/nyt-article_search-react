@@ -1,7 +1,7 @@
-import React, {Suspense} from "react";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import React, { Suspense } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MainLayout from "../../layouts/main";
-import {RouteTypes} from "../interfaces/route.interface";
+import { RouteTypes } from "../interfaces/route.interface";
 import PUBLIC_ROUTES from "./public";
 import DotsLoader from "../../components/shared/DotsLoader";
 
@@ -22,6 +22,6 @@ const RenderRoutes = (): React.ReactElement => {
 			</MainLayout>
 		</Router>
 	);
-}
+};
 
 export default RenderRoutes;

@@ -4,7 +4,7 @@
 * */
 
 import React from "react";
-import {UI_STATE_EMPTY, UI_STATE_ERROR, UI_STATE_LOADING, UI_STATE_SUCCESS} from "../../static/constants";
+import { UI_STATE_EMPTY, UI_STATE_ERROR, UI_STATE_LOADING, UI_STATE_SUCCESS } from "../../static/constants";
 
 const BuildUI = (
 	uiState: string,
@@ -30,6 +30,6 @@ const BuildUI = (
 	};
 
 	return uiComponent();
-}
+};
 
 export default BuildUI;

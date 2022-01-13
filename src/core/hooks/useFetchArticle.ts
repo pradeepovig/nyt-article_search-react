@@ -2,8 +2,8 @@
 * A custom hook to abstract the logic of fetching Article Data
 * */
 
-import {useEffect, useState} from "react";
-import {ArticleTypes} from "../interfaces/article.interface";
+import { useEffect, useState } from "react";
+import { ArticleTypes } from "../interfaces/article.interface";
 import {
 	UI_STATE_DEFAULT,
 	UI_STATE_EMPTY,
@@ -12,7 +12,7 @@ import {
 	UI_STATE_SUCCESS
 } from "../static/constants";
 import ArticleAPIService from "../../services/API/ArticleAPI.service";
-import {setDocumentTitle} from "../utils";
+import { setDocumentTitle } from "../utils";
 
 const useFetchArticle = (articlePath: string, prevArticle: ArticleTypes, prevArticlePath: string): [string, ArticleTypes] => {
 	const [uiState, setUIState] = useState(UI_STATE_DEFAULT);
@@ -24,7 +24,7 @@ const useFetchArticle = (articlePath: string, prevArticle: ArticleTypes, prevArt
 		// Only fetch article if it is not cached in context
 		if (!prevArticle || articlePath !== prevArticlePath) {
 			//	Fetch article here
-			ArticleAPIService(articlePath).then(({status, data}) => {
+			ArticleAPIService(articlePath).then(({ status, data }) => {
 				if (status) {
 					if (data.response.docs.length) {
 						setArticleData(data.response.docs[0]);
@@ -44,10 +44,10 @@ const useFetchArticle = (articlePath: string, prevArticle: ArticleTypes, prevArt
 			setUIState(UI_STATE_SUCCESS);
 		}
 
-		setDocumentTitle(articleData.headline?.main || articleData.headline?.print_headline || 'NYT');
+		setDocumentTitle(articleData.headline?.main || articleData.headline?.print_headline || "NYT");
 	}, [articlePath]);
 
 	return [uiState, articleData];
-}
+};
 
 export default useFetchArticle;

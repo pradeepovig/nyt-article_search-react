@@ -1,14 +1,14 @@
 import React from "react";
 import SearchBar from "../../components/SearchBar";
-import {createSearchParams, useNavigate} from "react-router-dom";
+import { createSearchParams, useNavigate } from "react-router-dom";
 
 const HomePage = (): JSX.Element => {
 	let navigate = useNavigate();
 
 	const handleSearch = (query: string) => {
 		navigate({
-			pathname: '/search',
-			search: `?${createSearchParams({ query, page: '1' })}`,
+			pathname: "/search",
+			search: `?${createSearchParams({ query, page: "1" })}`,
 		});
 	};
 
@@ -17,6 +17,6 @@ const HomePage = (): JSX.Element => {
 			<SearchBar onSearch={handleSearch}/>
 		</div>
 	);
-}
+};
 
 export default HomePage;

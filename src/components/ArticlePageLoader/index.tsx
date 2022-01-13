@@ -21,6 +21,6 @@ const ArticlePageLoader = (): JSX.Element => {
 			</ContentLoader>
 		</div>
 	);
-}
+};
 
 export default ArticlePageLoader;
