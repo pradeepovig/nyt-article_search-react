@@ -2,7 +2,7 @@
 * A custom hook to abstract the logic of fetching Article Data
 * */
 
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {
 	UI_STATE_DEFAULT,
 	UI_STATE_EMPTY,
@@ -12,17 +12,25 @@ import {
 } from "../static/constants";
 import SearchAPIService from "../../services/API/SearchAPI.service";
 import {FetchArticlesResponseTypes} from "../interfaces/article.interface";
+import {AppContext} from "../../contexts/App.context";
+import {getTotalPages} from "../utils";
 
 const useFetchArticle = (searchQuery: string, page: number): [string, FetchArticlesResponseTypes, number] => {
+	const appContext = useContext(AppContext);
 	const [uiState, setUIState] = useState(UI_STATE_DEFAULT);
 	const [totalPages, setTotalPages] = useState(0);
 	const [articlesData, setArticlesData] = useState({} as FetchArticlesResponseTypes);
 
 	useEffect(() => {
-		if (searchQuery.length) {
+		// Set context initially
+		appContext.setSearchQuery(searchQuery);
+		appContext.setArticlesPage(page);
+
+		if (searchQuery?.length) {
 			setUIState(UI_STATE_LOADING);
 
-			SearchAPIService(searchQuery, page).then(({status, data}) => {
+			// Page index starts from 0
+			SearchAPIService(searchQuery, (page - 1)).then(({status, data}) => {
 				if(status) {
 					setArticlesData(data);
 
@@ -32,7 +40,7 @@ const useFetchArticle = (searchQuery: string, page: number): [string, FetchArtic
 						setUIState(UI_STATE_EMPTY);
 					}
 
-					setTotalPages(data.response.meta.hits ? ( Math.floor(data.response.meta.hits / 10) ) + ( data.response.meta.hits % 10 ) : 0);
+					setTotalPages(getTotalPages(data.response.meta.hits));
 				} else {
 					setUIState(UI_STATE_ERROR);
 				}

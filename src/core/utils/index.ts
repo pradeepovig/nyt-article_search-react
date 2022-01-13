@@ -23,3 +23,7 @@ export function formatDate(date: string, format: string): string {
 		return new Date(Date.parse(date)).toLocaleDateString('en-US').replaceAll('/', '.');
 	}
 }
+
+export function getTotalPages(hits: number) {
+	return hits ? Math.floor(hits / 10) + Math.ceil( (hits % 10) / 10 ) : 0
+}

@@ -1,11 +1,9 @@
 import { lazy } from "react";
 
 // Lazy loading imports
-// @ts-ignore
 const Home = lazy(() => import("../../../pages/Home"));
-// @ts-ignore
+const Search = lazy(() => import("../../../pages/Search"));
 const Article = lazy(() => import("../../../pages/Article"));
-// @ts-ignore
 const Error404 = lazy(() => import("../../../pages/Error404"));
 
 // Custom hook for
@@ -14,6 +12,11 @@ const PUBLIC_ROUTES = [
 		path: '/',
 		key: 'HOME',
 		element: <Home />
+	},
+	{
+		path: "/search/*",
+		key: 'SEARCH',
+		element: <Search />,
 	},
 	{
 		path: '/article/*',

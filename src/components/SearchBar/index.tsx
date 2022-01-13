@@ -3,12 +3,12 @@ import { FunctionComponent } from "react";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
 
 type SearchBarTypes = {
-	cachedQuery: string;
+	cachedQuery?: string;
 	onSearch: (val: string) => void;
 }
 
 const SearchBar: FunctionComponent<SearchBarTypes> = ({ cachedQuery, onSearch }: SearchBarTypes): JSX.Element => {
-	const [searchQuery, setSearchQuery] = useState(cachedQuery);
+	const [searchQuery, setSearchQuery] = useState(cachedQuery || '');
 
 	const handleSearch = (key: string) => {
 		if (key === "Enter") {

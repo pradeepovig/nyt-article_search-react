@@ -24,7 +24,7 @@ const ArticlePage = (): JSX.Element => {
 	const MainComponent = (
 		isValidPath(currentArticlePath) ?
 			<>
-				<Link to={"/"}>{'<'} Go back to results page</Link>
+				<Link to={`/search?query=${appContext.searchQuery}&page=${appContext.articlesPage}`}>{'<'} Go back to results page</Link>
 				<Article data={articleData}/>
 				<a className="button" aria-label="Read full story" href={articleData?.web_url}>Read full story</a>
 			</> :

@@ -7,10 +7,10 @@ interface ErrorTypes {
 
 const Error = ({msg, note}: ErrorTypes): JSX.Element => {
 	return (
-		<div className="uiState empty">
+		<div className="uiState error">
 			<ExclamationSVG />
-			<h1>{msg || 'Something went wrong'}</h1>
-			<p>{ note || 'Oops! We apologize for the inconvenience.' }</p>
+			<h1 className="uiStateMessage">{msg || 'Something went wrong'}</h1>
+			<p className="uiStateNote">{ note || 'Oops! We apologize for the inconvenience.' }</p>
 		</div>
 	);
 }

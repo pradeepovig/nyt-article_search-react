@@ -22,7 +22,7 @@ const AppContext = createContext<AppContextTypes>({} as AppContextTypes);
 
 const AppDataProvider = (props: AppTypes) => {
 	const [articlesData, setArticlesData] = useState(FetchArticlesMock);
-	const [articlesPage, setArticlesPage] = useState(0);
+	const [articlesPage, setArticlesPage] = useState(1);
 	const [searchQuery, setSearchQuery] = useState('');
 	const [articleData, setArticleData] = useState(ArticlesMock[0]);
 	const [articleURL, setArticleURL] = useState('');
