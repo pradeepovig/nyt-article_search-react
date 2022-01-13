@@ -10,7 +10,6 @@ import Error from "../../components/shared/Error";
 import Empty from "../../components/shared/Empty";
 
 const ArticlePage = (): JSX.Element => {
-	// Cached article in the app context
 	const appContext = useContext(AppContext);
 
 	// Get Article path from the browser
@@ -18,7 +17,7 @@ const ArticlePage = (): JSX.Element => {
 	const currentArticlePath = params["*"] || "";
 
 	// Fetch Article data
-	const [ uiState, articleData ] = useFetchArticle(currentArticlePath, appContext.articleData, appContext.articleURL);
+	const [ uiState, articleData ] = useFetchArticle(currentArticlePath);
 
 	// Main component
 	const MainComponent = (

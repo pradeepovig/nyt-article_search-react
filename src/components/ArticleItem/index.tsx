@@ -11,7 +11,7 @@ interface ArticleItemTypes {
 const ArticleItem = ({ data }: ArticleItemTypes): JSX.Element => {
 	return (
 		<article className="articleListItem">
-			<Link to={`/article/${getArticlePageURL(data.web_url)}`}>
+			<Link to={`/article/${getArticlePageURL(data.web_url)}`} >
 				<i className="articleDate">{ formatDate(data.pub_date, "") }</i>
 				<h1 className="articleHeadline">{ data.headline.main }</h1>
 				{ data.headline.print_headline ? ( <h4 className="articleSubHeadline">{ data.headline.print_headline }</h4> ) : null }

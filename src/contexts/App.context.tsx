@@ -10,12 +10,12 @@ interface AppContextTypes {
 	articlesPage: number,
 	searchQuery: string;
 	articleData: ArticleTypes;
-	articleURL: string;
+	articlePath: string;
 	setArticlesData: (val: FetchArticlesResponseTypes) => void;
 	setArticlesPage: (val: number) => void;
 	setSearchQuery: (val: string) => void;
 	setArticleData: (val: ArticleTypes) => void;
-	setArticleURL: (val: string) => void;
+	setArticlePath: (val: string) => void;
 }
 
 // Ignore Unused parameter warning
@@ -26,7 +26,7 @@ const AppDataProvider = (props: AppTypes) => {
 	const [articlesPage, setArticlesPage] = useState(1);
 	const [searchQuery, setSearchQuery] = useState("");
 	const [articleData, setArticleData] = useState(ArticlesMock[0]);
-	const [articleURL, setArticleURL] = useState("");
+	const [articlePath, setArticlePath] = useState("");
 
 	return (
 		// <AppContext.Provider value={state}>
@@ -35,12 +35,12 @@ const AppDataProvider = (props: AppTypes) => {
 			articlesPage,
 			searchQuery,
 			articleData,
-			articleURL,
+			articlePath,
 			setArticlesData,
 			setArticlesPage,
 			setSearchQuery,
 			setArticleData,
-			setArticleURL
+			setArticlePath
 		}}>
 			{props.children}
 		</AppContext.Provider>

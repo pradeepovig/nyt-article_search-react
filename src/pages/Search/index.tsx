@@ -11,6 +11,7 @@ import Error from "../../components/shared/Error";
 import BuildUI from "../../core/HOFs/BuildUI";
 import useSearchArticles from "../../core/hooks/useSearchArticles";
 import { createSearchParams, Navigate, useSearchParams } from "react-router-dom";
+import { setDocumentTitle } from "../../core/utils";
 
 interface SearchPageComponentTypes {
 	query: string;
@@ -71,11 +72,13 @@ const SearchPageComponent = ({ query, page }: SearchPageComponentTypes): JSX.Ele
 const SearchPage = (): JSX.Element => {
 	// Get route params
 	const [searchParams] = useSearchParams();
-	const query = searchParams.get("query");
-	const page = searchParams.get("page");
+	const query = searchParams.get("query") || "";
+	const page = searchParams.get("page") || 1;
+
+	setDocumentTitle("The New York Times | Search");
 
 	return (
-		(query && page && Number(page)) ?
+		(page && Number(page)) ?
 		<SearchPageComponent query={query} page={Number(page)} /> :
 		<Navigate to="/" />
 	);
