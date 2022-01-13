@@ -75,7 +75,7 @@ const SearchPage = (): JSX.Element => {
 	const page = searchParams.get("page");
 
 	return (
-		(query && page) ?
+		(query && page && Number(page)) ?
 		<SearchPageComponent query={query} page={Number(page)} /> :
 		<Navigate to="/" />
 	);
