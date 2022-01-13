@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,300;1,400;1,700&display=swap');
+@import "assets/partials/theme";
+
+/*
+  Root Config
+*/
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+}
+
+/*
+  Core Config
+*/
+#nyt-search-app {
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+input {
+	width: 100%;
+	padding: 0.25rem 1rem;
+	border: 1px solid $colorBorder;
+	border-radius: 2px;
+	line-height: 1.5;
+	height: 1rem;
+	transition: all 0.3s;
+
+	&:hover {
+		border-color: $colorActive;
+		border-right-width: 1px!important;
+	}
+
+	&:focus {
+		border-color: $colorActive;
+		box-shadow: 0 0 0 2px $colorActiveOutline;
+		border-right-width: 1px!important;
+		outline: 0;
+	}
+}
+
+button {
+	color: $colorPrimary;
+	background: $colorSecondary;
+	text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+	line-height: 1.5715;
+	position: relative;
+	display: inline-block;
+	font-weight: 400;
+	white-space: nowrap;
+	text-align: center;
+	border: 1px solid transparent;
+	box-shadow: 0 2px #00000004;
+	cursor: pointer;
+	user-select: none;
+	touch-action: manipulation;
+	height: 32px;
+	padding: 4px 15px;
+	font-size: 14px;
+	border-radius: 4px;
+	transition: all .3s cubic-bezier(.645,.045,.355,1);
+
+	&:disabled {
+		filter: opacity(0.5);
+		cursor: none;
+		pointer-events: none;
+	}
+}
+
+/*
+  Utility Classes
+*/
+
+.flex {
+	display: flex;
+}
+
+.justifyContentCenter {
+	justify-content: center;
+}
+
+.justifyContentSpaceBetween {
+	justify-content: space-between;
+}
+
+.alignItemsCenter {
+	align-items: center;
+}
+
+/*
+  Component Styles
+*/
+
+// 0. Navigation
+
+header {
+	background-color: $colorSecondary;
+	padding: 0 1rem;
+	color: $colorPrimary;
+
+	.brandLogo {
+		filter: invert(1);
+		margin-right: 1em;
+
+		img {
+			width: 2rem;
+		}
+	}
+}
+
+// 1. Home Page
+
+.homePage {
+	width: 66%;
+	height: 100%;
+	max-height: 100%;
+	display: flex;
+	flex-direction: column;
+
+	label {
+		display: block;
+		font-weight: 600;
+		font-size: 1.25rem;
+		margin-bottom: 1rem;
+	}
+
+	.searchBar {
+		margin-bottom: 2rem;
+	}
+}
+
+// 2. Search Page
+.searchPage {
+	@extend .homePage;
+
+	.searchResultsContainer {
+		flex: 2;
+
+		label {
+			margin-bottom: 2rem;
+		}
+	}
+
+	.articlesList {
+		margin: 0;
+		padding: 0;
+		max-height: 58vh;
+		overflow-y: auto;
+	}
+
+	.contentLoader {
+		flex: 1 1 auto;
+	}
+
+	.articleListItem {
+		font-family: 'Merriweather', serif;
+		margin-bottom: 2rem;
+		border-radius: 4px;
+		border-left: 2px solid transparent;
+		padding: 0.5rem 0;
+		transition: all 0.3s;
+
+		&:hover {
+			padding-left: 0.5rem;
+			border-color: $colorLink;
+		}
+
+		a {
+			display: flex;
+			flex-direction: column;
+			color: inherit;
+			text-decoration: none;
+
+			i {
+				color: $colorTextLight;
+				margin-bottom: 1em;
+			}
+		}
+
+		.articleHeadline {
+			margin: 0;
+		}
+
+		.articleSubHeadline {
+			margin-bottom: 0;
+		}
+	}
+}
+
+// 3. Article Page
+.articlePage {
+	width: 66%;
+
+	.contentLoader {
+		flex: 1 1 auto;
+	}
+
+	a {
+		color: $colorLink;
+		text-decoration: none;
+	}
+}
+
+// 4. Shared Components
+
+.searchBar {
+	.searchBarWrapper {
+		position: relative;
+		display: flex;
+
+		input {
+			height: 2rem;
+		}
+
+		.searchIcon {
+			position: absolute;
+			top: 0.5em;
+			right: 1em;
+			fill: $colorBorder;
+		}
+	}
+}
+
+.pagination {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 1rem;
+	padding: 0.5rem 0;
+}
+
+.uiState {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.uiStateMessage {
+		margin: 1rem 0 0.5rem 0;
+	}
+
+	.uiStateNote {
+		margin: 0;
+	}
+
+	svg {
+		width: 4rem;
+	}
+
+	&.error {
+		svg {
+			circle, line {
+				stroke: $colorError;
+			}
+		}
+	}
+}
+
+.ellipsisLoader {
+
+}
+
+// Media Queries
+
+@mixin headerTitleSmall {
+	.headerTitle {
+		font-size: 1em !important;
+	}
+}
+
+@mixin headerTitleMed {
+	.headerTitle {
+		font-size: 1.5em !important;
+	}
+}
+
+// Mobile Devices
+@media screen and (max-width: 540px) {
+	header {
+		@include headerTitleSmall;
+	}
+
+	.homePage, .articlePage {
+		width: 100%;
+	}
+}
+
+// Mobile Devices - Tablet
+@media screen and (min-width: 541px) and (max-width: 768px) {
+	header {
+		@include headerTitleSmall;
+	}
+
+	.homePage, .articlePage {
+		width: 84%;
+	}
+}
+
+// Tablet - Desktop
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	header {
+		@include headerTitleMed;
+	}
+
+	.homePage, .articlePage {
+		width: 75%;
+	}
+}
+
+// Desktop and beyond
+@media screen and (min-width: 1025px) {
+
+}
