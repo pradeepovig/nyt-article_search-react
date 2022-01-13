@@ -26,31 +26,27 @@ const useFetchArticle = (searchQuery: string, page: number): [string, FetchArtic
 		appContext.setSearchQuery(searchQuery);
 		appContext.setArticlesPage(page);
 
-		if (searchQuery?.length) {
-			setUIState(UI_STATE_LOADING);
+		setUIState(UI_STATE_LOADING);
 
-			// Page index starts from 0
-			SearchAPIService(searchQuery, (page - 1)).then(({ status, data }) => {
-				if(status) {
-					setArticlesData(data);
+		// Page index starts from 0
+		SearchAPIService(searchQuery, (page - 1)).then(({ status, data }) => {
+			if(status) {
+				setArticlesData(data);
 
-					if (data.response.docs.length) {
-						setUIState(UI_STATE_SUCCESS);
-					} else {
-						setUIState(UI_STATE_EMPTY);
-					}
-
-					setTotalPages(getTotalPages(data.response.meta.hits));
+				if (data.response.docs.length) {
+					setUIState(UI_STATE_SUCCESS);
 				} else {
-					setUIState(UI_STATE_ERROR);
+					setUIState(UI_STATE_EMPTY);
 				}
-			}).catch(e => {
-				console.error(e);
+
+				setTotalPages(getTotalPages(data.response.meta.hits));
+			} else {
 				setUIState(UI_STATE_ERROR);
-			});
-		} else {
-			setUIState(UI_STATE_DEFAULT);
-		}
+			}
+		}).catch(e => {
+			console.error(e);
+			setUIState(UI_STATE_ERROR);
+		});
 	}, [searchQuery, page]);
 
 	return [uiState, articlesData, totalPages];
