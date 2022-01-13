@@ -8,8 +8,8 @@ interface LayoutTypes {
 export default function MainLayout({ ...props }: LayoutTypes): JSX.Element{
     return (
         <>
-            <Header />
-            <main>{props.children}</main>
+            <Header aria-label="Header"/>
+            <main aria-label="Main">{props.children}</main>
         </>
     );
 }

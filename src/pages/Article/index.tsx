@@ -6,8 +6,6 @@ import { isValidPath } from "../../core/utils";
 import ArticlePageLoader from "../../components/ArticlePageLoader";
 import useFetchArticle from "../../core/hooks/useFetchArticle";
 import BuildUI from "../../core/HOFs/BuildUI";
-import Error from "../../components/shared/Error";
-import Empty from "../../components/shared/Empty";
 
 const ArticlePage = (): JSX.Element => {
 	const appContext = useContext(AppContext);
@@ -36,7 +34,7 @@ const ArticlePage = (): JSX.Element => {
 	return (
 		<div className="articlePage">
 			{
-				BuildUI(uiState, <ArticlePageLoader />, MainComponent, <Empty />, <Error />)
+				BuildUI(uiState, <ArticlePageLoader />, MainComponent)
 			}
 		</div>
 	);

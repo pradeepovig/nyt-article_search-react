@@ -5,14 +5,16 @@
 
 import React from "react";
 import { UI_STATE_EMPTY, UI_STATE_ERROR, UI_STATE_LOADING, UI_STATE_SUCCESS } from "../../static/constants";
+import Error from "../../../components/shared/Error";
+import Empty from "../../../components/shared/Empty";
 
 const BuildUI = (
 	uiState: string,
 	LoadingComponent: JSX.Element,
 	SuccessComponent: JSX.Element,
-	EmptyComponent: JSX.Element,
-	ErrorComponent: JSX.Element,
-	DefaultComponent?: JSX.Element
+	EmptyComponent: JSX.Element = <Empty />,
+	ErrorComponent: JSX.Element = <Error />,
+	DefaultComponent: JSX.Element = <></>,
 ): JSX.Element => {
 	const uiComponent = () => {
 		switch(uiState) {
@@ -25,7 +27,7 @@ const BuildUI = (
 			case UI_STATE_ERROR:
 				return ErrorComponent;
 			default:
-				return ( DefaultComponent || <></> );
+				return DefaultComponent;
 		}
 	};
 
