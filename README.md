@@ -27,15 +27,19 @@ Copy and paste this template
 
 ### Development Mode
 
-`npm start`
+  `npm start`
 
 ### Production Mode
 
-`npm build`
+  `npm build`
 
 ## Running the unit tests
 
-`npm test`
+  `npm test`
+
+## Running linter
+
+  `npm lint`
 
 # Application
 
@@ -45,16 +49,25 @@ This application lets you search articles from The New York Times and also provi
 
 ## Home Page
 
-![localhost_3000_ (1)](https://user-images.githubusercontent.com/19465523/149210031-8c10900b-5a25-4aa1-80a3-0c6381e5498b.png)
-
-![home-mobile](https://user-images.githubusercontent.com/19465523/149211275-dfab1ccf-bc74-46a2-828d-dc616be84882.png)
+![home-desktop](https://user-images.githubusercontent.com/19465523/149327449-5f7d380b-28a3-4792-b554-11abbf0c46a6.png)
 
 - The landing page
+- Lets you search for articles by the Keywords
+- Simple type the keyword and press 'Enter'
+- After searching you will then be redirected towards the Search Page to see results.
+
+## Search Page
+
+![search-desktop](https://user-images.githubusercontent.com/19465523/149210031-8c10900b-5a25-4aa1-80a3-0c6381e5498b.png)
+
+![search-mobile](https://user-images.githubusercontent.com/19465523/149211275-dfab1ccf-bc74-46a2-828d-dc616be84882.png)
+
 - Lets you search for articles by the Keywords
 - Simple type the keyword and press 'Enter'
 - Related articles will appear below in a list
 - 10 records are shown at once, to see more, use the pagination buttons at the bottom
 - Click on any article item and it will navigate you to the Article page where you can preview it
+- You may directly reach this page via the URL of format **/search?query=YOUR_SEARCH_QUERY&page=PAGE_NUMBER**
 
 ## Article Page
 
