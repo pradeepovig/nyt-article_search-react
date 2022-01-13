@@ -1,6 +1,7 @@
-import { useState, createContext } from 'react'
-import {AppTypes} from "../core/interfaces/app.interface";
-import {ArticleTypes, FetchArticlesResponseTypes} from "../core/interfaces/article.interface";
+import React from "react";
+import { useState, createContext } from "react";
+import { AppTypes } from "../core/interfaces/app.interface";
+import { ArticleTypes, FetchArticlesResponseTypes } from "../core/interfaces/article.interface";
 import FetchArticlesMock from "../tests/mocks/fetchArticles.mock";
 import ArticlesMock from "../tests/mocks/articles.mock";
 
@@ -23,43 +24,9 @@ const AppContext = createContext<AppContextTypes>({} as AppContextTypes);
 const AppDataProvider = (props: AppTypes) => {
 	const [articlesData, setArticlesData] = useState(FetchArticlesMock);
 	const [articlesPage, setArticlesPage] = useState(1);
-	const [searchQuery, setSearchQuery] = useState('');
+	const [searchQuery, setSearchQuery] = useState("");
 	const [articleData, setArticleData] = useState(ArticlesMock[0]);
-	const [articleURL, setArticleURL] = useState('');
-
-	// const setArticlesData = (articlesData: FetchArticlesResponseTypes) => {
-	// 	setState({...state, articlesData});
-	// };
-	//
-	// const setArticlesPage = (articlesPage: number) => {
-	// 	setState({...state, articlesPage});
-	// };
-	//
-	// const setSearchQuery = (searchQuery: string) => {
-	// 	setState({...state, searchQuery});
-	// };
-	//
-	// const setArticleData = (articleData: ArticleTypes) => {
-	// 	setState({...state, articleData});
-	// };
-	//
-	// const setArticleURL = (articleURL: string) => {
-	// 	setState({...state, articleURL});
-	// };
-
-	// Value that will be given to the context, i.e state
-	// const [state, setState] = useState({
-	// 	articlesData: FetchArticlesMock,
-	// 	articlesPage: 0,
-	// 	searchQuery: '',
-	// 	articleData: ArticlesMock[0],
-	// 	articleURL: '',
-	// 	setArticlesData,
-	// 	setArticlesPage,
-	// 	setSearchQuery,
-	// 	setArticleData,
-	// 	setArticleURL
-	// });
+	const [articleURL, setArticleURL] = useState("");
 
 	return (
 		// <AppContext.Provider value={state}>
@@ -77,7 +44,7 @@ const AppDataProvider = (props: AppTypes) => {
 		}}>
 			{props.children}
 		</AppContext.Provider>
-	)
-}
+	);
+};
 
-export { AppContext, AppDataProvider }
+export { AppContext, AppDataProvider };

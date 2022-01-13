@@ -8,6 +8,6 @@ const Error404Page = (): JSX.Element => {
 			<p>We’re sorry, we seem to have lost this page, but we don’t want to lose you.</p>
 		</>
 	);
-}
+};
 
 export default Error404Page;

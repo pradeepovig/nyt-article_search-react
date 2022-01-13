@@ -15,6 +15,6 @@ const ArticleItemLoader = (): JSX.Element => {
 			<rect x="0" y="98" rx="3" ry="3" width="800" height="24" />
 		</ContentLoader>
 	);
-}
+};
 
 export default ArticleItemLoader;

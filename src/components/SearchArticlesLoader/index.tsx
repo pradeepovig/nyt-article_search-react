@@ -15,6 +15,6 @@ const SearchArticlesLoader = (): JSX.Element => {
 			</>
 		</div>
 	);
-}
+};
 
 export default SearchArticlesLoader;

@@ -15,15 +15,16 @@ export function isValidPath(params: string) {
 	return format1.test(params) || format2.test(params);
 }
 
+// TODO: Add logic to format to any desired format
 export function formatDate(date: string, format: string): string {
 	// TODO: Add better date parsing
 	if (!date?.length) {
-		return '';
+		return "";
 	} else {
-		return new Date(Date.parse(date)).toLocaleDateString('en-US').replaceAll('/', '.');
+		return new Date(Date.parse(date)).toLocaleDateString("en-US").replaceAll("/", ".");
 	}
 }
 
 export function getTotalPages(hits: number) {
-	return hits ? Math.floor(hits / 10) + Math.ceil( (hits % 10) / 10 ) : 0
+	return hits ? Math.floor(hits / 10) + Math.ceil( (hits % 10) / 10 ) : 0;
 }
