@@ -3,6 +3,7 @@ import { setupServer } from "msw/node";
 import "@testing-library/jest-dom";
 import ArticleAPIService from "./ArticleAPI.service";
 import client from "../../tests/mocks/APIClient.mock";
+import { FetchArticleMock, FetchArticleSlugMock } from "../../tests/mocks/fetchArticle.mock";
 
 const server = setupServer(
 	rest.get("/", (req, res, ctx) => {
