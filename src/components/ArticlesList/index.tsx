@@ -12,7 +12,7 @@ const ArticlesList = (props: ArticlesListTypes): JSX.Element => {
 	return(
 		<ul className="articlesList">
 			{
-				props.articles.map((articleItem: ArticleTypes) => (<ArticleItem key={articleItem.pub_date} data={articleItem} />))
+				props.articles.map((articleItem: ArticleTypes) => (<ArticleItem key={articleItem.web_url} data={articleItem} />))
 			}
 		</ul>
 	);

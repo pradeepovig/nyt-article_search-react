@@ -5,9 +5,7 @@ import {
 } from "../../core/static/constants";
 import Pagination from "../../components/Pagination";
 import ArticlesList from "../../components/ArticlesList";
-import Empty from "../../components/shared/Empty";
 import SearchArticlesLoader from "../../components/SearchArticlesLoader";
-import Error from "../../components/shared/Error";
 import BuildUI from "../../core/HOFs/BuildUI";
 import useSearchArticles from "../../core/hooks/useSearchArticles";
 import { createSearchParams, Navigate, useSearchParams } from "react-router-dom";
@@ -58,12 +56,12 @@ const SearchPageComponent = ({ query, page }: SearchPageComponentTypes): JSX.Ele
 		</>
 	);
 
-	const PaginationComponent = totalPages > 0 && uiState === UI_STATE_SUCCESS && <Pagination page={page} totalPages={totalPages} onPaginate={handlePagination}/>;
+	const PaginationComponent = ( totalPages > 0 && uiState === UI_STATE_SUCCESS ) ? <Pagination page={page} totalPages={totalPages} onPaginate={handlePagination}/> : <></>;
 
 	return (
 		<div className="searchPage">
 			<SearchBar cachedQuery={searchQuery} onSearch={handleSearch}/>
-			{ BuildUI(uiState, <SearchArticlesLoader />, MainComponent, <Empty />, <Error />) }
+			{ BuildUI(uiState, <SearchArticlesLoader />, MainComponent) }
 			{ PaginationComponent }
 		</div>
 	);

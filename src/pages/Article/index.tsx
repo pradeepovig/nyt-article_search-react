@@ -6,8 +6,6 @@ import { isValidPath } from "../../core/utils";
 import ArticlePageLoader from "../../components/ArticlePageLoader";
 import useFetchArticle from "../../core/hooks/useFetchArticle";
 import BuildUI from "../../core/HOFs/BuildUI";
-import Error from "../../components/shared/Error";
-import Empty from "../../components/shared/Empty";
 
 const ArticlePage = (): JSX.Element => {
 	const appContext = useContext(AppContext);
@@ -23,6 +21,7 @@ const ArticlePage = (): JSX.Element => {
 	const MainComponent = (
 		isValidPath(currentArticlePath) ?
 			<>
+				{/*TODO: Use persistent storage to pick cached article*/}
 				<Link to={`/search?query=${appContext.searchQuery}&page=${appContext.articlesPage}`}>{"<"} Go back to results page</Link>
 				<Article data={articleData}/>
 				<a className="button" aria-label="Read full story" href={articleData?.web_url}>Read full story</a>
@@ -36,7 +35,7 @@ const ArticlePage = (): JSX.Element => {
 	return (
 		<div className="articlePage">
 			{
-				BuildUI(uiState, <ArticlePageLoader />, MainComponent, <Empty />, <Error />)
+				BuildUI(uiState, <ArticlePageLoader />, MainComponent)
 			}
 		</div>
 	);

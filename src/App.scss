@@ -95,6 +95,11 @@ button {
 	display: flex;
 }
 
+.flexCol {
+	display: flex;
+	flex-direction: column;
+}
+
 .justifyContentCenter {
 	justify-content: center;
 }

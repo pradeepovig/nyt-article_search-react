@@ -10,11 +10,11 @@ interface ArticleItemTypes {
 
 const ArticleItem = ({ data }: ArticleItemTypes): JSX.Element => {
 	return (
-		<article className="articleListItem">
+		<article className="articleListItem" aria-label="Article List Item">
 			<Link to={`/article/${getArticlePageURL(data.web_url)}`} >
-				<i className="articleDate">{ formatDate(data.pub_date, "") }</i>
-				<h1 className="articleHeadline">{ data.headline.main }</h1>
-				{ data.headline.print_headline ? ( <h4 className="articleSubHeadline">{ data.headline.print_headline }</h4> ) : null }
+				<i className="articleDate" aria-label="Article Publish Date">{ formatDate(data.pub_date, "") }</i>
+				<h1 className="articleHeadline" aria-label="Article Headline">{ data.headline.main }</h1>
+				{ data.headline.print_headline ? ( <h4 className="articleSubHeadline" aria-label="Article Print Headline">{ data.headline.print_headline }</h4> ) : null }
 			</Link>
 		</article>
 	);
