@@ -1,4 +1,4 @@
-const FetchArticleMock = {
+export const FetchArticleMock = {
 	"status": "OK",
 	"copyright": "Copyright (c) 2022 The New York Times Company. All Rights Reserved.",
 	"response": {
@@ -27,4 +27,4 @@ const FetchArticleMock = {
 	}
 };
 
-const FetchArticleSlugMock = "2022/01/02/science/jim-green-nasa-mars";
+export const FetchArticleSlugMock = "2022/01/02/science/jim-green-nasa-mars";

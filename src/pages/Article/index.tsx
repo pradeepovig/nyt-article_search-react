@@ -21,6 +21,7 @@ const ArticlePage = (): JSX.Element => {
 	const MainComponent = (
 		isValidPath(currentArticlePath) ?
 			<>
+				{/*TODO: Use persistent storage to pick cached article*/}
 				<Link to={`/search?query=${appContext.searchQuery}&page=${appContext.articlesPage}`}>{"<"} Go back to results page</Link>
 				<Article data={articleData}/>
 				<a className="button" aria-label="Read full story" href={articleData?.web_url}>Read full story</a>

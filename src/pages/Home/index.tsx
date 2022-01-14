@@ -16,7 +16,7 @@ const HomePage = (): JSX.Element => {
 	};
 
 	return (
-		<div className="homePage flexCol justifyContentCenter" aria-label="Home Page">
+		<div className="homePage" aria-label="Home Page">
 			<SearchBar onSearch={handleSearch}/>
 		</div>
 	);
