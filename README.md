@@ -82,6 +82,24 @@ This application lets you search articles from The New York Times and also provi
 
 ---
 
+# :wrench: Under the hood
+
+The selection of core Tech Stack for this project has been made keeping in mind the complexity of the application.
+
+**Framework:** Create React App
+
+**Language:** Typescript
+
+**Styling:** SCSS
+
+**State Management:** React Context
+
+**Project Structure:** Divided neatly into *Pages*, *Components*, *Services* and *Core* config which houses *Custom Hooks*, *HOCs*. Each component has a directory by its name and a typescript file named *index* and a test file named *index.test* and this structure is consistent throughout the project. The advantage of naming your file *index* is that that you don't repeat yourself - you've already named the folder MyComponent/, why name the file the same?
+
+**Testing:** React Testing Library
+
+---
+
 # :bug: Known Issues / Room for Improvement
 
 ## Persistent Storage
