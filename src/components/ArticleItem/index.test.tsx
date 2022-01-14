@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import ArticleItem from "../../components/ArticleItem";
-import ArticlesMock from "../mocks/articles.mock";
+import ArticleItem from "./index";
+import ArticlesMock from "../../tests/mocks/articles.mock";
 
 test("It should render an Article List Item", () => {
 	render(<ArticleItem data={ArticlesMock[0]}/>);
