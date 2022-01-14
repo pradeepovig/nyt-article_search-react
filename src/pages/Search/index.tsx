@@ -56,7 +56,7 @@ const SearchPageComponent = ({ query, page }: SearchPageComponentTypes): JSX.Ele
 		</>
 	);
 
-	const PaginationComponent = totalPages > 0 && uiState === UI_STATE_SUCCESS && <Pagination page={page} totalPages={totalPages} onPaginate={handlePagination}/>;
+	const PaginationComponent = ( totalPages > 0 && uiState === UI_STATE_SUCCESS ) ? <Pagination page={page} totalPages={totalPages} onPaginate={handlePagination}/> : <></>;
 
 	return (
 		<div className="searchPage">
